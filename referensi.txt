@@ -1,0 +1,3 @@
+http://www.9lessons.info/2013/05/message-conversation-database-design.html
+http://www.9lessons.info/2010/02/php-login-script-with-encryption.html
+http://id.jobsdb.com/id/id
