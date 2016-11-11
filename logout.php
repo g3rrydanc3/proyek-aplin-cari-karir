@@ -2,13 +2,13 @@
 	//menghindari direct access header,footer,db,dll
 	define('Access', TRUE);
 	require_once("pages/header.php");
-	
-	if(strlen($_SESSION["current"]) == 0){
-		require_once("pages/index_not_login.php");
-	}
-	else{
-		require_once("pages/index_login.php");
-	}
-	
+	unset($_SESSION["current"]);
+	unset($_SESSION["role"]);
+?>
+	<div class="container">
+		Berhasil Logout!.
+	</div>
+<?php
 	require_once("pages/footer.php");
+	header("location:index.php");
 ?>

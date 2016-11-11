@@ -1,5 +1,9 @@
 <?php
 	require_once("../db.php");
+	session_start();
+	if(!isset($_SESSION["current"])){
+		$_SESSION["current"] = "";
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

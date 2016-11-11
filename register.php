@@ -3,11 +3,6 @@
 	require_once("pages/header.php");
 	
 	if(isset($_POST["signin"])){
-		$username = $_POST["inputUsername"];
-		$password = $_POST["inputPassword"];
-		$role = 1;
-		$_SESSION["current"] = $username;
-		$_SESSION["role"] = $role;
 		header("location:index.php");
 	}
 ?>
@@ -54,11 +49,11 @@ body {
 	<div class="container">
 
 		<form class="form-signin" method="post" action="login.php">
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h2 class="form-signin-heading">Please sign up</h2>
 			<label for="inputUsername" class="sr-only">Email address</label>
-			<input type="text" id="inputUsername" class="form-control" placeholder="Username" name="inputUsername" required autofocus>
+			<input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
 			<label for="inputPassword" class="sr-only">Password</label>
-			<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="inputPassword" required>
+			<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 			<div class="checkbox">
 				<label>
 					<input type="checkbox" value="remember-me"> Remember me
