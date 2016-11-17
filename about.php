@@ -5,7 +5,7 @@
 ?>
 	<div class="wrapper">
 		<div class="container">
-			Notification
+			About Us
 		</div>
 	</div>
 <?php

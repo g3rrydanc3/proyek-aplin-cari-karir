@@ -37,6 +37,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/landing-page.css" rel="stylesheet">
+    <link href="css/sweetalert.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -60,10 +61,18 @@
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="<?php active('about.php');?>"><a href="#about">About</a></li>
-				<li class="<?php active('asdf.php');?>"><a href="#contact">Contact</a></li>
+				<li class="<?php active('about.php');?>"><a href="about.php">About</a></li>
+				<li class="<?php active('contact.php');?>"><a href="contact.php">Contact</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+			<li><form class="navbar-form" role="search" method="get" action="search.php">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search" name="q">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+			</form></li>
 				<?php
 					if(strlen($_SESSION["current"]) != 0){
 						echo '<li class=';

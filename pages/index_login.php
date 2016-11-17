@@ -3,7 +3,9 @@
 		die('Direct access not permitted');
 	}
 ?>
-<div class="container">
-	<h1>Home</h1>
+<div class="wrapper">
+	<div class="container">
+		<h1>Home</h1>
+		Sudah login
+	</div>
 </div>
-Sudah login

@@ -5,7 +5,7 @@
 ?>
 	<div class="wrapper">
 		<div class="container">
-			Notification
+			<h1>Profile</h1>
 		</div>
 	</div>
 <?php
