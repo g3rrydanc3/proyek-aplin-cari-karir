@@ -4,11 +4,10 @@ html {
   position: relative;
   min-height: 100%;
 }
-.footer {
+footer {
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
   background-color: #f5f5f5;
+  min-height:350px;
 }
 /* Custom page CSS
 -------------------------------------------------- */
@@ -169,4 +168,8 @@ code {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+}
+
+.nav-footer{
+	padding:5px;
 }
