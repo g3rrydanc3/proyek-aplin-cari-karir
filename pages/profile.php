@@ -7,11 +7,11 @@
 	<div class="container">
 		<h1>Profile</h1>
 		<div class="row profile">
-			<div class="col-md-3">
+			<div class="col-sm-3">
 				<div class="profile-sidebar">
 					<!-- SIDEBAR USERPIC -->
 					<div class="profile-userpic">
-						<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+						<img src="img/demo.png" class="img-responsive" alt="">
 					</div>
 					<!-- END SIDEBAR USERPIC -->
 					<!-- SIDEBAR USER TITLE -->
@@ -58,7 +58,7 @@
 					<!-- END MENU -->
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-sm-9">
 				<div class="profile-content">
 				   Some user related content goes here...
 				</div>

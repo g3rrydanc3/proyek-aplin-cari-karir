@@ -81,7 +81,7 @@
 						
 						echo '<li class=';
 						active("notification.php");
-						echo '><a href="notification.php"><span class="glyphicon glyphicon-certificate"></span> Notification</a></li>';
+						echo '><a href="notification.php"><span class="badge">0</span> Notification</a></li>';
 						
 						echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
 					}

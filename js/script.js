@@ -1,7 +1,7 @@
 
 function resize() {
 	if($('.wrapper').height() + $('.navbar').height() + 300 < $(document).height()){
-		$(".wrapper").height($(document).height() - $('.footer').height() - $('.navbar').height() + 50);
+		$(".wrapper").height($(document).height());
 	}
 }
 
@@ -15,7 +15,7 @@ $(document).ready(function(){
 			if($(window).scrollTop() + $(window).height() > $(document).height() - 350) {
 				if(!bottom){
 					 $('html, body').animate({
-						scrollTop: $("footer").offset().top
+						scrollTop: $(".footerStick").offset().top
 					}, 100);
 					bottom = true;
 				}
@@ -26,7 +26,7 @@ $(document).ready(function(){
 		} else {
 			if(bottom && $(window).scrollTop() + $(window).height() + 50 > $(document).height()) {
 				 $('html, body').animate({
-					scrollTop: $("footer").offset().top - $(window).height()
+					scrollTop: $(".footerStick").offset().top - $(window).height()
 				}, 100);
 				bottom = false;
 			}

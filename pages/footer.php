@@ -4,7 +4,7 @@
 		die('Direct access not permitted');
 	}
 ?>
-	<footer>
+	<footer class="footerStick">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
