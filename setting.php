@@ -4,19 +4,16 @@
 	require_once("pages/header.php");
 	
 	if(strlen($_SESSION["current"]) == 0){
-		if(!isset($GET["id"])){
+		if(isset($GET["id"])){
 			header("location:error.php");
-		}
-		else{
-			require_once("profile/profile.php");
 		}
 	}
 	else{
 		if(!isset($_GET["id"])){
-			require_once("profile/myprofile.php");
+			require_once("profile/setting.php");
 		}
 		else{
-			require_once("profile/profile.php");
+			header("location:error.php");
 		}
 	}
 	

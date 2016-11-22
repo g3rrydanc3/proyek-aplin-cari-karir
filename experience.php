@@ -8,15 +8,15 @@
 			header("location:error.php");
 		}
 		else{
-			require_once("profile/profile.php");
+			require_once("profile/experience.php");
 		}
 	}
 	else{
 		if(!isset($_GET["id"])){
-			require_once("profile/myprofile.php");
+			require_once("profile/myexperience.php");
 		}
 		else{
-			require_once("profile/profile.php");
+			require_once("profile/experience.php");
 		}
 	}
 	

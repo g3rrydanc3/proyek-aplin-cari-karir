@@ -5,7 +5,7 @@
 ?>
 <div class="wrapper">
 	<div class="container">
-		<h1>Profile</h1>
+		<h1>My Profile</h1>
 		<div class="row profile">
 			<div class="col-sm-3">
 				<div class="profile-sidebar">
@@ -33,25 +33,25 @@
 					<!-- SIDEBAR MENU -->
 					<div class="profile-usermenu">
 						<ul class="nav">
-							<li class="active">
-								<a href="#">
+							<li class="<?php active('profile.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>profile.php">
 								<i class="glyphicon glyphicon-home"></i>
 								Overview </a>
 							</li>
-							<li>
-								<a href="#">
-								<i class="glyphicon glyphicon-user"></i>
+							<li class="<?php active('education.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>education.php">
+								<i class=" 	glyphicon glyphicon-education"></i>
+								Education </a>
+							</li>
+							<li class="<?php active('experience.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>experience.php">
+								<i class="glyphicon glyphicon-briefcase"></i>
+								Work Experience </a>
+							</li>
+							<li class="<?php active('setting.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>setting.php">
+								<i class="glyphicon glyphicon-wrench"></i>
 								Account Settings </a>
-							</li>
-							<li>
-								<a href="#" target="_blank">
-								<i class="glyphicon glyphicon-ok"></i>
-								Tasks </a>
-							</li>
-							<li>
-								<a href="#">
-								<i class="glyphicon glyphicon-flag"></i>
-								Help </a>
 							</li>
 						</ul>
 					</div>
@@ -60,7 +60,16 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="profile-content">
-				   Some user related content goes here...
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3>Marcus Doe</h3>
+							<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> asdf@asdf.com</p>
+							<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 0561687891</p>
+							<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 31 February 2016</p>
+							<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> SDFQWER SURABAYA</p>
+							asdfasdf
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

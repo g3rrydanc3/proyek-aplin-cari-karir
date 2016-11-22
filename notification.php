@@ -6,7 +6,8 @@
 	<div class="wrapper">
 		<div class="container">
 			<h1>Notification</h1>
-			<a href="#" class="nounderline">
+			
+			<a href="http://<?php echo getFolderUrl();?>notification.php?notif=1" class="nounderline">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h4>New Message</h4>
@@ -16,7 +17,8 @@
 						<p>For 50 years, WWF has been protecting...</p>
 					</div>
 				</div>
-				</a>
+			</a>
+			
 		</div>
 	</div>
 <?php

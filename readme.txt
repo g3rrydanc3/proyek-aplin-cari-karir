@@ -1,0 +1,1 @@
+setting website ada di pages/config.ini

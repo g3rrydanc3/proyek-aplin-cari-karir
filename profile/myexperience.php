@@ -34,22 +34,22 @@
 					<div class="profile-usermenu">
 						<ul class="nav">
 							<li class="<?php active('profile.php');?>">
-								<a href="profile.php">
+								<a href="http://<?php echo getFolderUrl();?>profile.php">
 								<i class="glyphicon glyphicon-home"></i>
 								Overview </a>
 							</li>
-							<li class="<?php active('sad.php');?>">
-								<a href="education.php">
+							<li class="<?php active('education.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>education.php">
 								<i class=" 	glyphicon glyphicon-education"></i>
 								Education </a>
 							</li>
-							<li class="<?php active('sad.php');?>">
-								<a href="experience.php">
+							<li class="<?php active('experience.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>experience.php">
 								<i class="glyphicon glyphicon-briefcase"></i>
 								Work Experience </a>
 							</li>
 							<li class="<?php active('setting.php');?>">
-								<a href="setting.php">
+								<a href="http://<?php echo getFolderUrl();?>setting.php">
 								<i class="glyphicon glyphicon-wrench"></i>
 								Account Settings </a>
 							</li>

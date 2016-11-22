@@ -10,5 +10,5 @@
 	</div>
 <?php
 	require_once("pages/footer.php");
-	header("location:index.php");
+	header("location:http://" . getFolderUrl() . "index.php");
 ?>
