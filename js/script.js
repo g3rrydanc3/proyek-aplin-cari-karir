@@ -1,7 +1,7 @@
 
 function resize() {
-	if($('.wrapper').height() + $('.navbar').height() + 200 < $(document).height()){
-		$(".wrapper").height($(document).height());
+	if($('.wrapper').height() < $(window).height()){
+		$(".wrapper").height($(window).height());
 	}
 }
 

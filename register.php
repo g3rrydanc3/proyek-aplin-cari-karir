@@ -49,7 +49,7 @@
 			if($password != $confirmPassword){
 				array_push($errors, "Password not same");
 			}
-			if($role != "Worker" && $role != "Company"){
+			if($role != "Student" && $role != "Company"){
 				array_push($errors, "Role invalid");
 			}
 			
@@ -156,7 +156,7 @@
 				<label class="control-label col-sm-2" for="role">Role</label>
 				<div class="col-sm-10">
 					<select class="form-control" id="role" name="role">
-						<option selected>Worker</option>
+						<option selected>Student</option>
 						<option>Company</option>
 					</select>
 				</div>

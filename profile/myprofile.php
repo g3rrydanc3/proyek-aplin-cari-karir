@@ -2,6 +2,11 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
+	$db->where ("id", $_SESSION["current"]);
+	$user = $db->getOne ("user");
+	$db->where ("user_id", $_SESSION["current"]);
+	$userShown = $db->getOne ("user_setting_shown");
+	
 ?>
 <div class="wrapper">
 	<div class="container">
@@ -11,16 +16,35 @@
 				<div class="profile-sidebar">
 					<!-- SIDEBAR USERPIC -->
 					<div class="profile-userpic">
-						<img src="img/demo.png" class="img-responsive" alt="">
+						<img src="img/
+						<?php
+							if($user["foto"] == "0"){
+								echo "demo.png";
+							}
+							else{
+								echo "user/" . $user["foto"];
+							}
+						?>" class="img-responsive" alt="<?php echo $user["foto"];?>">
 					</div>
 					<!-- END SIDEBAR USERPIC -->
 					<!-- SIDEBAR USER TITLE -->
 					<div class="profile-usertitle">
 						<div class="profile-usertitle-name">
-							Marcus Doe
+							<?php echo $user["name"];?>
 						</div>
 						<div class="profile-usertitle-job">
-							Developer
+							<?php
+								if($user["role"] == 1){
+									echo "STUDENT";
+								}
+								else if($user["role"] == 2){
+									echo "COMPANY";
+								}
+								else{
+									echo "OTHER";
+								}
+							
+							?>
 						</div>
 					</div>
 					<!-- END SIDEBAR USER TITLE -->
@@ -61,15 +85,32 @@
 			<div class="col-sm-9">
 				<div class="profile-content">
 					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>Overview</h2>
+						</div>
 						<div class="panel-body">
-							<h3>Marcus Doe</h3>
-							<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> asdf@asdf.com</p>
-							<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 0561687891</p>
-							<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 31 February 2016</p>
-							<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> SDFQWER SURABAYA</p>
-							asdfasdf
+							<h3><?php echo $user["name"];?></h3>
+							 <?php echo '<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> ' . $user["email"] . '</p>';?>
+							 <?php if($userShown["tel"] == 1) echo '<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> ' . $user["tel"] . '</p>';?>
+							 <?php if($userShown["birthdate"] == 1)echo '<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ' . $user["birthdate"] . '</p>';?>
+							 <?php if($userShown["address"] == 1)echo '<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ' . $user["address"] . ' ' . $user["zipcode"] . '</p>';?>
+							 <?php if($userShown["about_me"] == 1){ echo '<h3>About me</h3>' . $user["about_me"];}?>
+							 
 						</div>
 					</div>
+					<?php if ($userShown["biodata"] == 1){
+						echo '<div class="panel panel-default">
+								<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapse1">Biodata (Click to open)</a></h4></div>
+								<div id="collapse1" class="panel-collapse collapse">
+									<div class="panel-body">' .
+									'<p><b>Hobby : </b>' . $user["hobby"] . '</p>' .
+									'<p><b>Languange : </b>' . $user["bahasa"] . '</p>' .
+									'<p><b>Citizen : </b>' . $user["warga_negara"] . '</p>' .
+									'<p><b>Religion : </b>' . $user["agama"] . '</p>' .
+									'</div>
+								</div>
+							</div>';
+					}?>
 				</div>
 			</div>
 		</div>
