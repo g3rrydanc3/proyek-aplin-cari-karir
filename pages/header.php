@@ -17,6 +17,8 @@
 		$_SESSION["role"] = "";
 	}
 	
+	$javascript="";
+	
 	function active($currect_page){
 		$url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
 		$url = end($url_array);
@@ -66,7 +68,7 @@
     <link href="http://<?php echo getFolderUrl();?>css/bootstrap.min.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/landing-page.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/sweetalert.css" rel="stylesheet">
-    <link href="http://<?php echo getFolderUrl();?>css/style.css" rel="stylesheet">
+	<link href="http://<?php echo getFolderUrl();?>css/style.css" rel="stylesheet">
 
 </head>
 

@@ -37,6 +37,8 @@
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/sweetalert.min.js"></script>
     <script src="js/script.js"></script>
+	
+	<?php echo $javascript;?>
 </body>
 
 </html>

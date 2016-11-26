@@ -2,6 +2,110 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
+	
+	if(isset($_POST["btnPrivacy"])){
+		$gender = 0;$birthdate = 0;$address = 0;$tel = 0;$hobby = 0;$bahasa = 0;$warga_negara = 0;$agama = 0;$about_me = 0;$biodata = 0;
+		
+		if(isset($_POST["gender"])){
+			$gender = 1;
+		}
+		if(isset($_POST["birthdate"])){
+			$birthdate = 1;
+		}
+		if(isset($_POST["address"])){
+			$address = 1;
+		}
+		if(isset($_POST["tel"])){
+			$tel = 1;
+		}
+		if(isset($_POST["hobby"])){
+			$hobby = 1;
+		}
+		if(isset($_POST["bahasa"])){
+			$bahasa = 1;
+		}
+		if(isset($_POST["warga_negara"])){
+			$warga_negara = 1;
+		}
+		if(isset($_POST["agama"])){
+			$agama = 1;
+		}
+		if(isset($_POST["about_me"])){
+			$about_me = 1;
+		}
+		if(isset($_POST["biodata"])){
+			$biodata = 1;
+		}
+		
+		$data = Array(
+			'gender' => $gender,
+			'birthdate' => $birthdate,
+			'address' => $address,
+			'tel' => $tel,
+			'hobby' => $hobby,
+			'bahasa' => $bahasa,
+			'warga_negara' => $warga_negara,
+			'agama' => $agama,
+			'about_me' => $about_me,
+			'biodata' => $biodata
+		);	
+		$db->where ("user_id", $_SESSION["current"]);
+		if ($db->update ('user_setting_shown', $data)){
+			$javascript.= '<script>swal("Success!", "Privacy updated successfully!", "success")</script>';
+		}
+		else{
+			die($db->getLastError());
+		}
+	}
+	else if(isset($_POST["btnProfile"])){
+		$name = $_POST["name"];
+		$gender = $_POST["gender"];
+		$birthdate = $_POST["birthdate"];
+		$address = $_POST["address"];
+		$tel = $_POST["tel"];
+		$zipcode = $_POST["zipcode"];
+		$hobby = $_POST["hobby"];
+		$bahasa = $_POST["bahasa"];
+		$warga_negara = $_POST["warga_negara"];
+		$agama = $_POST["agama"];
+		$about_me = $_POST["about_me"];
+		
+		$data = Array(
+			'name' => $name,
+			'gender' => $gender,
+			'birthdate' => $birthdate,
+			'address' => $address,
+			'tel' => $tel,
+			'zipcode' => $zipcode,
+			'hobby' => $hobby,
+			'bahasa' => $bahasa,
+			'warga_negara' => $warga_negara,
+			'agama' => $agama,
+			'about_me' => $about_me,
+		);
+		$db->where ("id", $_SESSION["current"]);
+		if ($db->update ('user', $data)){
+			$javascript.= '<script>swal("Success!", "Profile updated successfully!", "success")</script>';
+		}
+		else{
+			die($db->getLastError());
+		}
+	}
+	$db->where ("id", $_SESSION["current"]);
+	$user = $db->getOne ("user");
+
+	$db->where ("id", $_SESSION["current"]);
+	$queryBirthDate = $db->getOne ("user", "DATE_FORMAT(birthdate,'%d-%m-%Y')");
+	
+	
+	$db->where ("user_id", $_SESSION["current"]);
+	$setting = $db->getOne ("user_setting_shown");
+	
+	function settingCheck($var){
+		if($GLOBALS['setting'][$var] == 1){
+			echo "checked";
+		}
+	}
 ?>
 <div class="wrapper">
 	<div class="container">
@@ -11,16 +115,35 @@
 				<div class="profile-sidebar">
 					<!-- SIDEBAR USERPIC -->
 					<div class="profile-userpic">
-						<img src="img/demo.png" class="img-responsive" alt="">
+						<img src="img/
+						<?php
+							if($user["foto"] == "0"){
+								echo "demo.png";
+							}
+							else{
+								echo "user/" . $user["foto"];
+							}
+						?>" class="img-responsive" alt="<?php echo $user["foto"];?>">
 					</div>
 					<!-- END SIDEBAR USERPIC -->
 					<!-- SIDEBAR USER TITLE -->
 					<div class="profile-usertitle">
 						<div class="profile-usertitle-name">
-							Marcus Doe
+							<?php echo $user["name"];?>
 						</div>
 						<div class="profile-usertitle-job">
-							Developer
+							<?php
+								if($user["role"] == 1){
+									echo "STUDENT";
+								}
+								else if($user["role"] == 2){
+									echo "COMPANY";
+								}
+								else{
+									echo "OTHER";
+								}
+							
+							?>
 						</div>
 					</div>
 					<!-- END SIDEBAR USER TITLE -->
@@ -39,7 +162,7 @@
 								Overview </a>
 							</li>
 							<li class="<?php active('education.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>education.php">
+								<a href="education.php">
 								<i class=" 	glyphicon glyphicon-education"></i>
 								Education </a>
 							</li>
@@ -60,14 +183,214 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="profile-content">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h3>Marcus Doe</h3>
-							<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> asdf@asdf.com</p>
-							<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 0561687891</p>
-							<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 31 February 2016</p>
-							<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> SDFQWER SURABAYA</p>
-							asdfasdf
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Profile</a>
+								</h4>
+							</div>
+							<div id="collapse1" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<form class="form-horizontal" method="post" action="setting.php">
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="name">Name</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="name" id="name" value="<?php echo $user["name"]?>" required>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="gender">Gender</label>
+											<div class="col-sm-10">
+												<label class="radio-inline">
+													<input type="radio" name="gender" value="male" <?php if($user["gender"] == "male") echo "checked";?>>Male
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="gender" value="female"<?php if($user["gender"] == "female") echo "checked";?>>Female
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="dob">Date of Birth</label>
+											<div class="col-sm-10">
+												<input id="dob" name="dob" class="form-control" placeholder="DD-MM-YYYY" type="date" value="<?php echo reset($queryBirthDate);?>" required>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="address">Address</label>
+											<div class="col-sm-10">
+												<input id="address" name="address" class="form-control" type="text" value="<?php echo $user["address"];?>">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="zipcode">Zipcode</label>
+											<div class="col-sm-10">
+												<input id="zipcode" name="zipcode" class="form-control" type="text" value="<?php echo $user["zipcode"];?>">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="tel">Telephone</label>
+											<div class="col-sm-10">
+												<input id="tel" name="tel" class="form-control" type="text" value="<?php echo $user["tel"];?>">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="hobby">Hobby</label>
+											<div class="col-sm-10">
+												<input id="hobby" name="hobby" class="form-control" type="text" value="<?php echo $user["hobby"];?>">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="bahasa">Languange</label>
+											<div class="col-sm-10">
+												<input id="bahasa" name="bahasa" class="form-control" type="text" value="<?php echo $user["bahasa"];?>">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="warga_negara">Nationality</label>
+											<div class="col-sm-10">
+												<input id="warga_negara" name="warga_negara" class="form-control" type="text" value="<?php echo $user["warga_negara"];?>">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="agama">Religion</label>
+											<div class="col-sm-10">
+												<input id="agama" name="agama" class="form-control" type="text" value="<?php echo $user["address"];?>">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="about_me">About me</label>
+											<div class="col-sm-10">
+												<textarea id="about_me" name="about_me" class="form-control" type="text"><?php echo $user["about_me"];?></textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<button type="submit" class="btn btn-primary" name="btnProfile">Update</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Privacy</a>
+								</h4>
+							</div>
+							<div id="collapse2" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form method="post" action="setting.php">
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="gender">Show gender</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="gender" name="gender" <?php settingCheck("gender"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="birthdate">Show birth of date</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="birthdate" name="birthdate" <?php settingCheck("birthdate"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="address">Show address</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="address" name="address" <?php settingCheck("address"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="tel">Show telephone</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="tel" name="tel" <?php settingCheck("tel"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="hobby">Show hobby</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="hobby" name="hobby" <?php settingCheck("hobby"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="bahasa">Show languange</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="bahasa" name="bahasa" <?php settingCheck("bahasa"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="warga_negara">Show nationality</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="warga_negara" name="warga_negara" <?php settingCheck("warga_negara"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="agama">Show religion</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="agama" name="agama" <?php settingCheck("agama"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="about_me">Show about me</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="about_me" name="about_me" <?php settingCheck("about_me"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-3 text-right" for="biodata">Show biodata</label>
+											<div class="col-sm-9">
+												<label class="switch">
+													<input type="checkbox" id="biodata" name="biodata" <?php settingCheck("biodata"); ?>>
+														<div class="slider round"></div>
+												</label>
+											</div>
+										</div>
+										<div class="form-group col-sm-offset-2">
+											<button type="submit" class="btn btn-primary" name="btnPrivacy">Update</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+								</h4>
+							</div>
+							<div id="collapse3" class="panel-collapse collapse">
+								<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+								minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+								commodo consequat.</div>
+							</div>
 						</div>
 					</div>
 				</div>

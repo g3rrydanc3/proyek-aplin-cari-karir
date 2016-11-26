@@ -5,7 +5,7 @@
 	$db->where ("id", $_SESSION["current"]);
 	$user = $db->getOne ("user");
 	$db->where ("user_id", $_SESSION["current"]);
-	$userShown = $db->getOne ("user_setting_shown");
+	$setting = $db->getOne ("user_setting_shown");
 	
 ?>
 <div class="wrapper">
@@ -91,14 +91,14 @@
 						<div class="panel-body">
 							<h3><?php echo $user["name"];?></h3>
 							 <?php echo '<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> ' . $user["email"] . '</p>';?>
-							 <?php if($userShown["tel"] == 1) echo '<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> ' . $user["tel"] . '</p>';?>
-							 <?php if($userShown["birthdate"] == 1)echo '<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ' . $user["birthdate"] . '</p>';?>
-							 <?php if($userShown["address"] == 1)echo '<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ' . $user["address"] . ' ' . $user["zipcode"] . '</p>';?>
-							 <?php if($userShown["about_me"] == 1){ echo '<h3>About me</h3>' . $user["about_me"];}?>
+							 <?php if($setting["tel"] == 1) echo '<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> ' . $user["tel"] . '</p>';?>
+							 <?php if($setting["birthdate"] == 1)echo '<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ' . $user["birthdate"] . '</p>';?>
+							 <?php if($setting["address"] == 1)echo '<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ' . $user["address"] . ' ' . $user["zipcode"] . '</p>';?>
+							 <?php if($setting["about_me"] == 1){ echo '<h3>About me</h3>' . $user["about_me"];}?>
 							 
 						</div>
 					</div>
-					<?php if ($userShown["biodata"] == 1){
+					<?php if ($setting["biodata"] == 1){
 						echo '<div class="panel panel-default">
 								<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapse1">Biodata (Click to open)</a></h4></div>
 								<div id="collapse1" class="panel-collapse collapse">
