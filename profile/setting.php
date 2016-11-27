@@ -101,11 +101,61 @@
 	$db->where ("user_id", $_SESSION["current"]);
 	$setting = $db->getOne ("user_setting_shown");
 	
+	$db->where ("id", $user["role"]);
+	$queryRole = $db->getOne ("role");
+	$queryRole = $queryRole["name"];
+	
 	function settingCheck($var){
 		if($GLOBALS['setting'][$var] == 1){
 			echo "checked";
 		}
 	}
+	$javascript .="
+		<script>
+		$(\"#avatar-2\").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: true,
+			removeLabel: '',
+			removeIcon: '<i class=\"glyphicon glyphicon-remove\"></i>',
+			removeTitle: 'Cancel or reset changes',
+			elErrorContainer: '#kv-avatar-errors-2',
+			msgErrorClass: 'alert alert-block alert-danger',
+			defaultPreviewContent: '<div class=\"profile-userpic\"><img src=\"img/";
+			if($user["foto"] == "0"){
+				$javascript .= "demo.png";
+			}
+			else{
+				$javascript .= "user/" . $user["foto"];
+			}
+			$javascript .= "\" alt=\"Your Avatar\"\"></div><h6 class=\"text-muted\">Click to select</h6>',
+			layoutTemplates: {main2: '{preview} {upload}'},
+			allowedFileExtensions: [\"jpg\", \"png\", \"gif\"],
+			uploadUrl: \"upload.php\",
+			uploadExtraData: function() {
+				return {
+					id: " . $_SESSION["current"] . ",
+					Access: '1'
+				}
+			}
+        });
+		$('#avatar-2').on('fileuploaded', function(event, data, previewId, index) {
+			var form = data.form, files = data.files, extra = data.extra,
+				response = data.response, reader = data.reader;
+				swal({
+					title: 'Success!',
+					text: 'Photo updated successfully!',
+					type: 'success',
+					closeOnConfirm: false
+				},
+					function(){
+					window.location.reload(true);
+				});
+		});
+		</script>";
 ?>
 <div class="wrapper">
 	<div class="container">
@@ -132,18 +182,7 @@
 							<?php echo $user["name"];?>
 						</div>
 						<div class="profile-usertitle-job">
-							<?php
-								if($user["role"] == 1){
-									echo "STUDENT";
-								}
-								else if($user["role"] == 2){
-									echo "COMPANY";
-								}
-								else{
-									echo "OTHER";
-								}
-							
-							?>
+							<?php echo $queryRole;?>
 						</div>
 					</div>
 					<!-- END SIDEBAR USER TITLE -->
@@ -184,6 +223,7 @@
 			<div class="col-sm-9">
 				<div class="profile-content">
 					<div class="panel-group" id="accordion">
+						<!-- Profile -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -273,13 +313,31 @@
 								</div>
 							</div>
 						</div>
+						<!-- Photo -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Privacy</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Photo</a>
 								</h4>
 							</div>
 							<div id="collapse2" class="panel-collapse collapse">
+								<div class="panel-body">
+									<div id="kv-avatar-errors-2" class="center-block" style="display:none"></div>
+										<div class="kv-avatar center-block">
+											<input id="avatar-2" name="images" type="file" class="file-loading">
+										</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- Privacy -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Privacy</a>
+								</h4>
+							</div>
+							<div id="collapse3" class="panel-collapse collapse">
 								<div class="panel-body">
 									<form method="post" action="setting.php">
 										<div class="form-group">
@@ -379,13 +437,14 @@
 								</div>
 							</div>
 						</div>
+						<!-- Something -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Collapsible Group 3</a>
 								</h4>
 							</div>
-							<div id="collapse3" class="panel-collapse collapse">
+							<div id="collapse4" class="panel-collapse collapse">
 								<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
 								minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

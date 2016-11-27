@@ -49,13 +49,16 @@ code {
 }
 
 .profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
+	float: none;
+	margin: 0 auto;
+	-webkit-border-radius: 50% !important;
+	-moz-border-radius: 50% !important;
+	border-radius: 50% !important;
+	border-color:black;
+	max-height:200px;
+	min-height:200px;
+	border-style: dotted;
+	border-width: 1px;
 }
 
 .profile-usertitle {

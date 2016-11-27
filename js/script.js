@@ -5,6 +5,9 @@ function resize() {
 	}
 }
 
+
+
+
 $(document).ready(function(){
 	resize();
 	var bottom = false;
@@ -39,4 +42,7 @@ $(document).ready(function(){
 		$('.wrapper').height(0);
 		resize();
 	});
+	
+
+	
 });

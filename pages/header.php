@@ -3,53 +3,7 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
-	require_once("config.php");
-	require_once("MysqliDb.php");
-	$db = new MysqliDb ($db_server, $db_username, $db_password, $db_dbname);
-	$db->ping();
-	
-	session_start();
-	
-	if(!isset($_SESSION["current"])){
-		$_SESSION["current"] = "";
-	}
-	if(!isset($_SESSION["role"])){
-		$_SESSION["role"] = "";
-	}
-	
-	$javascript="";
-	
-	function active($currect_page){
-		$url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
-		$url = end($url_array);
-		$url1 = explode('?', $url);
-		$url2 = $url1[0];
-		if($currect_page == $url2){
-			echo 'active';
-		}
-	}
-	
-	function getFolderUrl(){
-		$url = $_SERVER['REQUEST_URI'];
-		$dir = $_SERVER['SERVER_NAME'] . "/" . getFolderWebsite() . "/";
-		return $dir;
-	}
-	
-	function passingGet(){
-		if(isset($_GET)){
-			$numItems = count($_GET);
-			$i = 0;
-			$str = "?";
-			foreach($_GET as $key => $value){
-				$str.= $key . "=" . $value;
-				if ($i < $numItems - 1) {
-					$str.= "&";
-				}
-				$i++;
-			}
-			return $str;
-		}
-	}
+	require_once("function.php");
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +22,7 @@
     <link href="http://<?php echo getFolderUrl();?>css/bootstrap.min.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/landing-page.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/sweetalert.css" rel="stylesheet">
+    <link href="http://<?php echo getFolderUrl();?>css/fileinput.css" rel="stylesheet">
 	<link href="http://<?php echo getFolderUrl();?>css/style.css" rel="stylesheet">
 
 </head>
