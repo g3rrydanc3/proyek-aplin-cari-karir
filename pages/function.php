@@ -16,6 +16,27 @@
 	
 	$javascript="";
 	
+	function passingGet(){
+		if(isset($_GET)){
+			$numItems = count($_GET);
+			$i = 0;
+			$str = "?";
+			foreach($_GET as $key => $value){
+				$str.= $key . "=" . $value;
+				if ($i < $numItems - 1) {
+					$str.= "&";
+				}
+				$i++;
+			}
+			if(strlen($str) == 1){
+				return;
+			}
+			else{
+				return $str;
+			}
+		}
+	}
+	
 	function active($currect_page){
 		$url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
 		$url = end($url_array);
@@ -32,19 +53,5 @@
 		return $dir;
 	}
 	
-	function passingGet(){
-		if(isset($_GET)){
-			$numItems = count($_GET);
-			$i = 0;
-			$str = "?";
-			foreach($_GET as $key => $value){
-				$str.= $key . "=" . $value;
-				if ($i < $numItems - 1) {
-					$str.= "&";
-				}
-				$i++;
-			}
-			return $str;
-		}
-	}
+	
 ?>

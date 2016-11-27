@@ -22,7 +22,7 @@
     <link href="http://<?php echo getFolderUrl();?>css/bootstrap.min.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/landing-page.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/sweetalert.css" rel="stylesheet">
-    <link href="http://<?php echo getFolderUrl();?>css/fileinput.css" rel="stylesheet">
+    <link href="http://<?php echo getFolderUrl();?>css/fileinput.min.css" rel="stylesheet">
 	<link href="http://<?php echo getFolderUrl();?>css/style.css" rel="stylesheet">
 
 </head>
@@ -56,10 +56,12 @@
 				<?php
 					if(strlen($_SESSION["current"]) != 0){
 						echo '<li class=';
-						active("profile.php");
-						active("education.php");
-						active("experience.php");
-						active("setting.php");
+						if(strlen(passingGet()) == 0){
+							active("profile.php");
+							active("education.php");
+							active("experience.php");
+							active("setting.php");
+						}
 						echo '><a href="http://' . getFolderUrl() . 'profile.php"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>';
 						
 						echo '<li class=';

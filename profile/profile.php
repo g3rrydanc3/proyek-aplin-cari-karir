@@ -2,7 +2,22 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
+	$db->where ("id", $_GET["id"]);
+	$user = $db->getOne ("user");
+	if(count($user) == 0){
+		header("location:error.php");
+	}
 	
+	$db->where ("id", $_GET["id"]);
+	$queryBirthDate = $db->getOne ("user", "DATE_FORMAT(birthdate,'%d-%m-%Y')");
+	$queryBirthDate = reset($queryBirthDate);
+	
+	$db->where ("user_id", $_GET["id"]);
+	$setting = $db->getOne ("user_setting_shown");
+
+	$db->where ("id", $user["role"]);
+	$queryRole = $db->getOne ("role");
+	$queryRole = $queryRole["name"];
 ?>
 <div class="wrapper">
 	<div class="container">
@@ -10,62 +25,38 @@
 		<div class="row profile">
 			<div class="col-sm-3">
 				<div class="profile-sidebar">
-					<!-- SIDEBAR USERPIC -->
-					<div class="profile-userpic">
-						<img src="img/demo.png" class="img-responsive" alt="">
-					</div>
-					<!-- END SIDEBAR USERPIC -->
-					<!-- SIDEBAR USER TITLE -->
-					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">
-							Marcus Doe
-						</div>
-						<div class="profile-usertitle-job">
-							Developer
-						</div>
-					</div>
-					<!-- END SIDEBAR USER TITLE -->
-					<!-- SIDEBAR BUTTONS -->
-					<div class="profile-userbuttons">
-						<button type="button" class="btn btn-success btn-sm">Follow</button>
-						<button type="button" class="btn btn-danger btn-sm">Message</button>
-					</div>
-					<!-- END SIDEBAR BUTTONS -->
-					<!-- SIDEBAR MENU -->
-					<div class="profile-usermenu">
-						<ul class="nav">
-							<li class="<?php active('profile.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>profile.php<?php echo passingGet();?>">
-								<i class="glyphicon glyphicon-home"></i>
-								Overview </a>
-							</li>
-							<li class="<?php active('education.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>education.php<?php echo passingGet();?>">
-								<i class=" 	glyphicon glyphicon-education"></i>
-								Education </a>
-							</li>
-							<li class="<?php active('experience.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>experience.php<?php echo passingGet();?>">
-								<i class="glyphicon glyphicon-briefcase"></i>
-								Work Experience </a>
-							</li>
-						</ul>
-					</div>
-					<!-- END MENU -->
+					<?php require_once("sidebar.php");?>
 				</div>
 			</div>
 			<div class="col-sm-9">
 				<div class="profile-content">
 					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>Overview</h2>
+						</div>
 						<div class="panel-body">
-							<h3>Marcus Doe</h3>
-							<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> asdf@asdf.com</p>
-							<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 0561687891</p>
-							<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 31 February 2016</p>
-							<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> SDFQWER SURABAYA</p>
-							asdfasdf
+							<h3><?php echo $user["name"];?></h3>
+							 <?php echo '<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> ' . $user["email"] . '</p>';?>
+							 <?php if($setting["tel"] == 1) echo '<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> ' . $user["tel"] . '</p>';?>
+							 <?php if($setting["birthdate"] == 1)echo '<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ' . $queryBirthDate . '</p>';?>
+							 <?php if($setting["address"] == 1)echo '<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ' . $user["address"] . ' ' . $user["zipcode"] . '</p>';?>
+							 <?php if($setting["about_me"] == 1){ echo '<h3>About me</h3>' . $user["about_me"];}?>
+							 
 						</div>
 					</div>
+					<?php if ($setting["biodata"] == 1){
+						echo '<div class="panel panel-default">
+								<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapse1">Biodata (Click to open)</a></h4></div>
+								<div id="collapse1" class="panel-collapse collapse">
+									<div class="panel-body">' .
+									'<p><b>Hobby : </b>' . $user["hobby"] . '</p>' .
+									'<p><b>Languange : </b>' . $user["bahasa"] . '</p>' .
+									'<p><b>Citizen : </b>' . $user["warga_negara"] . '</p>' .
+									'<p><b>Religion : </b>' . $user["agama"] . '</p>' .
+									'</div>
+								</div>
+							</div>';
+					}?>
 				</div>
 			</div>
 		</div>

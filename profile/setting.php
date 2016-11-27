@@ -2,6 +2,19 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
+	$db->where ("id", $_SESSION["current"]);
+	$user = $db->getOne ("user");
+
+	$db->where ("id", $_SESSION["current"]);
+	$queryBirthDate = $db->getOne ("user", "DATE_FORMAT(birthdate,'%d-%m-%Y')");
+	$queryBirthDate = reset($queryBirthDate);
+	
+	$db->where ("user_id", $_SESSION["current"]);
+	$setting = $db->getOne ("user_setting_shown");
+
+	$db->where ("id", $user["role"]);
+	$queryRole = $db->getOne ("role");
+	$queryRole = $queryRole["name"];
 	
 	if(isset($_POST["btnPrivacy"])){
 		$gender = 0;$birthdate = 0;$address = 0;$tel = 0;$hobby = 0;$bahasa = 0;$warga_negara = 0;$agama = 0;$about_me = 0;$biodata = 0;
@@ -91,20 +104,7 @@
 			die($db->getLastError());
 		}
 	}
-	$db->where ("id", $_SESSION["current"]);
-	$user = $db->getOne ("user");
 
-	$db->where ("id", $_SESSION["current"]);
-	$queryBirthDate = $db->getOne ("user", "DATE_FORMAT(birthdate,'%d-%m-%Y')");
-	
-	
-	$db->where ("user_id", $_SESSION["current"]);
-	$setting = $db->getOne ("user_setting_shown");
-	
-	$db->where ("id", $user["role"]);
-	$queryRole = $db->getOne ("role");
-	$queryRole = $queryRole["name"];
-	
 	function settingCheck($var){
 		if($GLOBALS['setting'][$var] == 1){
 			echo "checked";
@@ -124,6 +124,7 @@
 			removeTitle: 'Cancel or reset changes',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
+			uploadClass: 'btn btn-primary',
 			defaultPreviewContent: '<div class=\"profile-userpic\"><img src=\"img/";
 			if($user["foto"] == "0"){
 				$javascript .= "demo.png";
@@ -131,8 +132,8 @@
 			else{
 				$javascript .= "user/" . $user["foto"];
 			}
-			$javascript .= "\" alt=\"Your Avatar\"\"></div><h6 class=\"text-muted\">Click to select</h6>',
-			layoutTemplates: {main2: '{preview} {upload}'},
+			$javascript .= "\" alt=\"Your Avatar\"\"></div><h6 class=\"text-muted\">Click to change photo</h6>',
+			layoutTemplates: {main2: '{preview}'},
 			allowedFileExtensions: [\"jpg\", \"png\", \"gif\"],
 			uploadUrl: \"upload.php\",
 			uploadExtraData: function() {
@@ -163,61 +164,7 @@
 		<div class="row profile">
 			<div class="col-sm-3">
 				<div class="profile-sidebar">
-					<!-- SIDEBAR USERPIC -->
-					<div class="profile-userpic">
-						<img src="img/
-						<?php
-							if($user["foto"] == "0"){
-								echo "demo.png";
-							}
-							else{
-								echo "user/" . $user["foto"];
-							}
-						?>" class="img-responsive" alt="<?php echo $user["foto"];?>">
-					</div>
-					<!-- END SIDEBAR USERPIC -->
-					<!-- SIDEBAR USER TITLE -->
-					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">
-							<?php echo $user["name"];?>
-						</div>
-						<div class="profile-usertitle-job">
-							<?php echo $queryRole;?>
-						</div>
-					</div>
-					<!-- END SIDEBAR USER TITLE -->
-					<!-- SIDEBAR BUTTONS -->
-					<div class="profile-userbuttons">
-						<button type="button" class="btn btn-success btn-sm">Follow</button>
-						<button type="button" class="btn btn-danger btn-sm">Message</button>
-					</div>
-					<!-- END SIDEBAR BUTTONS -->
-					<!-- SIDEBAR MENU -->
-					<div class="profile-usermenu">
-						<ul class="nav">
-							<li class="<?php active('profile.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>profile.php">
-								<i class="glyphicon glyphicon-home"></i>
-								Overview </a>
-							</li>
-							<li class="<?php active('education.php');?>">
-								<a href="education.php">
-								<i class=" 	glyphicon glyphicon-education"></i>
-								Education </a>
-							</li>
-							<li class="<?php active('experience.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>experience.php">
-								<i class="glyphicon glyphicon-briefcase"></i>
-								Work Experience </a>
-							</li>
-							<li class="<?php active('setting.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>setting.php">
-								<i class="glyphicon glyphicon-wrench"></i>
-								Account Settings </a>
-							</li>
-						</ul>
-					</div>
-					<!-- END MENU -->
+					<?php require_once("mysidebar.php");?>
 				</div>
 			</div>
 			<div class="col-sm-9">
@@ -230,7 +177,7 @@
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Profile</a>
 								</h4>
 							</div>
-							<div id="collapse1" class="panel-collapse collapse in">
+							<div id="collapse1" class="panel-collapse collapse">
 								<div class="panel-body">
 									<form class="form-horizontal" method="post" action="setting.php">
 										<div class="form-group">
@@ -253,7 +200,7 @@
 										<div class="form-group">
 											<label class="control-label col-sm-2" for="dob">Date of Birth</label>
 											<div class="col-sm-10">
-												<input id="dob" name="dob" class="form-control" placeholder="DD-MM-YYYY" type="date" value="<?php echo reset($queryBirthDate);?>" required>
+												<input id="dob" name="dob" class="form-control" placeholder="DD-MM-YYYY" type="date" value="<?php echo $queryBirthDate;?>" required>
 											</div>
 										</div>
 										<div class="form-group">
@@ -322,11 +269,10 @@
 							</div>
 							<div id="collapse2" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div class="kv-avatar center-block">
+										<input id="avatar-2" name="images" type="file" class="file-loading">
+									</div>
 									<div id="kv-avatar-errors-2" class="center-block" style="display:none"></div>
-										<div class="kv-avatar center-block">
-											<input id="avatar-2" name="images" type="file" class="file-loading">
-										</div>
-
 								</div>
 							</div>
 						</div>
@@ -437,7 +383,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Something -->
+						<!-- Something 
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -451,6 +397,7 @@
 								commodo consequat.</div>
 							</div>
 						</div>
+						-->
 					</div>
 				</div>
 			</div>

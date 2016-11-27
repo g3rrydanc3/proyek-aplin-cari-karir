@@ -2,6 +2,22 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
+	$db->where ("id", $_GET["id"]);
+	$user = $db->getOne ("user");
+	if(count($user) == 0){
+		header("location:error.php");
+	}
+	
+	$db->where ("id", $_GET["id"]);
+	$queryBirthDate = $db->getOne ("user", "DATE_FORMAT(birthdate,'%d-%m-%Y')");
+	$queryBirthDate = reset($queryBirthDate);
+	
+	$db->where ("user_id", $_GET["id"]);
+	$setting = $db->getOne ("user_setting_shown");
+
+	$db->where ("id", $user["role"]);
+	$queryRole = $db->getOne ("role");
+	$queryRole = $queryRole["name"];
 ?>
 <div class="wrapper">
 	<div class="container">
@@ -9,48 +25,7 @@
 		<div class="row profile">
 			<div class="col-sm-3">
 				<div class="profile-sidebar">
-					<!-- SIDEBAR USERPIC -->
-					<div class="profile-userpic">
-						<img src="img/demo.png" class="img-responsive" alt="">
-					</div>
-					<!-- END SIDEBAR USERPIC -->
-					<!-- SIDEBAR USER TITLE -->
-					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">
-							Marcus Doe
-						</div>
-						<div class="profile-usertitle-job">
-							Developer
-						</div>
-					</div>
-					<!-- END SIDEBAR USER TITLE -->
-					<!-- SIDEBAR BUTTONS -->
-					<div class="profile-userbuttons">
-						<button type="button" class="btn btn-success btn-sm">Follow</button>
-						<button type="button" class="btn btn-danger btn-sm">Message</button>
-					</div>
-					<!-- END SIDEBAR BUTTONS -->
-					<!-- SIDEBAR MENU -->
-					<div class="profile-usermenu">
-						<ul class="nav">
-							<li class="<?php active('profile.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>profile.php<?php echo passingGet();?>">
-								<i class="glyphicon glyphicon-home"></i>
-								Overview </a>
-							</li>
-							<li class="<?php active('education.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>education.php<?php echo passingGet();?>">
-								<i class=" 	glyphicon glyphicon-education"></i>
-								Education </a>
-							</li>
-							<li class="<?php active('experience.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>experience.php<?php echo passingGet();?>">
-								<i class="glyphicon glyphicon-briefcase"></i>
-								Work Experience </a>
-							</li>
-						</ul>
-					</div>
-					<!-- END MENU -->
+					<?php require_once("sidebar.php");?>
 				</div>
 			</div>
 			<div class="col-sm-9">
