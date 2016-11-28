@@ -7,14 +7,30 @@
 		$username = $_POST["inputUsername"];
 		$password = $_POST["inputPassword"];
 		$db->where('username', $username);
-		$results = $db->get('user');
+		$results = $db->getOne('user');
 		if(empty($results)){
 			array_push($errors, "Username doesn't exist");
 		}
-		else if(password_verify($password, $results[0]['password'])){
-			$_SESSION["current"] = $results[0]['id'];
-			$_SESSION["role"] = $results[0]['role'];
-			header("location:index.php");
+		else if(password_verify($password, $results['password'])){
+			$db->where("name", "activation");
+			$activation = $db->getOne("option");
+			$activation = $activation["value"];
+			
+			if($activation == "1" && $results["active"] == "0"){
+				array_push($errors, "Account haven't actived, Check your email.");
+			}
+			else if($results["lost_password_request"] != "0"){
+				array_push($errors, "Account had did reset password, Check your email.");
+			}
+			else{
+				$_SESSION["current"] = $results['id'];
+				$_SESSION["role"] = $results['role'];
+				
+				$data = Array ('last_sign_in_stamp' => date("Y-m-d H:i:s"));
+				$db->where ('id', $_SESSION["current"]);
+				$db->update ('user', $data);
+				header("location:index.php");
+			}
 		}
 		else{
 			array_push($errors, "Wrong password");

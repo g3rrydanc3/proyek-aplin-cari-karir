@@ -2,22 +2,23 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
+	
 	$db->where ("id", $_GET["id"]);
 	$user = $db->getOne ("user");
-	if(count($user) == 0){
-		header("location:error.php");
-	}
 	
-	$db->where ("id", $_GET["id"]);
-	$queryBirthDate = $db->getOne ("user", "DATE_FORMAT(birthdate,'%d-%m-%Y')");
-	$queryBirthDate = reset($queryBirthDate);
-	
-	$db->where ("user_id", $_GET["id"]);
-	$setting = $db->getOne ("user_setting_shown");
-
 	$db->where ("id", $user["role"]);
 	$queryRole = $db->getOne ("role");
 	$queryRole = $queryRole["name"];
+	
+	$db->where ("user_id", $_GET["id"]);
+	$informal = $db->get ("informal");
+	
+	$db->where ("user_id", $_GET["id"]);
+	$formal = $db->get ("formal");
+	
+	if(count($user) == 0){
+		header("location:error.php");
+	}
 ?>
 <div class="wrapper">
 	<div class="container">
@@ -31,13 +32,69 @@
 			<div class="col-sm-9">
 				<div class="profile-content">
 					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>Education</h2>
+						</div>
 						<div class="panel-body">
-							<h3>Marcus Doe</h3>
-							<p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> asdf@asdf.com</p>
-							<p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 0561687891</p>
-							<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 31 February 2016</p>
-							<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> SDFQWER SURABAYA</p>
-							asdfasdf
+							<h3>Formal education</h3>
+							<hr>
+							<div class="table-responsive">
+								
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Institution</th>
+											<th>Year Finished</th>
+											<th>Description</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+											foreach ($formal as $data) {
+												if($data["show"] == "1"){
+													echo "<tr>";
+													echo "<td>" . $data['sekolah'] . "</td>
+													<td>" . $data['tahun'] . "</td>
+													<td>" . $data['deskripsi'] . "</td>";
+													echo "</tr>";
+												}
+											}
+											if(count($formal) == 0){
+												echo "<tr><td colspan='3'><div class='text-muted text-center'>Still empty.</div><td></tr>";
+											}
+										?>
+									</tbody>
+								</table>
+							</div>
+							<h3>Informal Education</h3>
+							<hr>
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Institution</th>
+											<th>Year Finished</th>
+											<th>Description</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+											foreach ($informal as $data) {
+												if($data["show"] == "1"){
+													echo "<tr>";
+													echo "<td>" . $data['sekolah'] . "</td>
+													<td>" . $data['tahun'] . "</td>
+													<td>" . $data['deskripsi'] . "</td>";
+													echo "</tr>";
+												}
+											} 
+											if(count($formal) == 0){
+												echo "<tr><td colspan='3'><div class='text-muted text-center'>Still empty.</div><td></tr>";
+											}
+										?>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>

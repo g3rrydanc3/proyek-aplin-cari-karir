@@ -11,4 +11,6 @@
 		$config_folder = "proyek-aplin-job-comer";
 		return $config_folder;
 	}
+	
+	date_default_timezone_set('Asia/Jakarta');
 ?>

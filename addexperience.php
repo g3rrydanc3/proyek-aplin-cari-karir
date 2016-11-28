@@ -7,8 +7,13 @@
 		header("location:error.php");
 	}
 	else{
-		if(!isset($_GET["id"])){
-			require_once("profile/setting.php");
+		if(isset($_GET["add"])){
+			if($_GET["add"] == "formal" || $_GET["add"] == "informal"){
+				require_once("profile/addexperience.php");
+			}
+			else{
+				header("location:error.php");
+			}
 		}
 		else{
 			header("location:error.php");

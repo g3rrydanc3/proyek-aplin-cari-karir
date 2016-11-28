@@ -9,6 +9,7 @@
 		Berhasil Logout!.
 	</div>
 <?php
-	require_once("pages/footer.php");
 	header("location:http://" . getFolderUrl() . "index.php");
+	require_once("pages/footer.php");
+	
 ?>

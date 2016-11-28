@@ -169,13 +169,20 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="profile-content">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>Setting</h2>
+						</div>
+						<div class="panel-body">Email</div>
+					</div>
+						
 					<div class="panel-group" id="accordion">
 						<!-- Profile -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Profile</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse1" class="panel-collapse collapse">
 								<div class="panel-body">
@@ -263,9 +270,9 @@
 						<!-- Photo -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Photo</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse2" class="panel-collapse collapse">
 								<div class="panel-body">
@@ -279,9 +286,9 @@
 						<!-- Privacy -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Privacy</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse3" class="panel-collapse collapse">
 								<div class="panel-body">

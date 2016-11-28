@@ -73,9 +73,18 @@
 							   "name" => $firstName . " " . $lastName,
 							   "gender" => $gender,
 							   "birthdate" => $date[2] . "-" . $date[1] . "-" . $date[0],
-							   "role" => $role1
+							   "role" => $role1,
+							   "activation_token" => sha1(mt_rand(10000,99999).time().$email),
+							   "sign_up_stamp" => date("Y-m-d H:i:s")
 					);
+					
 					$insert = $db->insert ('user', $data);
+					
+					$db->where('username', $username);
+					$temp = $db->getOne('user');
+					
+					$data = Array ("user_id" => $temp["id"],);
+					$insert = $db->insert ('user_setting_shown', $data);
 					if($insert){
 						$success = '<div class="alert alert-success">
 							<strong>Success!</strong> Registration Success. Check your email for account confirmation.
@@ -84,6 +93,7 @@
 					}
 					else{
 						array_push($errors, "Database fatal error");
+						array_push($errors, $db->getLastError());
 					}
 				}
 			}

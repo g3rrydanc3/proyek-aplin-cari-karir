@@ -18,6 +18,10 @@
 	$db->where ("id", $user["role"]);
 	$queryRole = $db->getOne ("role");
 	$queryRole = $queryRole["name"];
+	
+	if(count($user) == 0){
+		header("location:error.php");
+	}
 ?>
 <div class="wrapper">
 	<div class="container">
