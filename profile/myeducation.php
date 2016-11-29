@@ -195,10 +195,10 @@
 													<a href='addeducation.php?edu=informal&action=delete&id=" . $data['id'] . "'><i class='glyphicon glyphicon-remove'></i></a>
 												</td>
 												";
-												if(count($formal) == 0){
-													echo "<tr><td colspan='3'><div class='text-muted text-center'>Still empty.</div><td></tr>";
-												}
 											} 
+											if(count($formal) == 0){
+												echo "<tr><td colspan='3'><div class='text-muted text-center'>Still empty.</div><td></tr>";
+											}
 										?>
 									</tbody>
 								</table>

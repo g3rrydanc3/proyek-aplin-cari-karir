@@ -21,11 +21,6 @@
 						</div>
 					</div>
 					<!-- END SIDEBAR USER TITLE -->
-					<!-- SIDEBAR BUTTONS -->
-					<div class="profile-userbuttons">
-						<a href="#"><button type="button" class="btn btn-primary btn-sm">Message</button></a>
-					</div>
-					<!-- END SIDEBAR BUTTONS -->
 					<!-- SIDEBAR MENU -->
 					<div class="profile-usermenu">
 						<ul class="nav">
@@ -39,10 +34,10 @@
 								<i class=" 	glyphicon glyphicon-education"></i>
 								Education </a>
 							</li>
-							<li class="<?php active('experience.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>experience.php">
+							<li class="<?php active('workhistory.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>workhistory.php">
 								<i class="glyphicon glyphicon-briefcase"></i>
-								Work Experience </a>
+								Work History </a>
 							</li>
 							<li class="<?php active('setting.php');?>">
 								<a href="http://<?php echo getFolderUrl();?>setting.php">

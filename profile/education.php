@@ -50,6 +50,7 @@
 									</thead>
 									<tbody>
 										<?php
+										$count = 0;
 											foreach ($formal as $data) {
 												if($data["show"] == "1"){
 													echo "<tr>";
@@ -57,9 +58,10 @@
 													<td>" . $data['tahun'] . "</td>
 													<td>" . $data['deskripsi'] . "</td>";
 													echo "</tr>";
+													$count++;
 												}
 											}
-											if(count($formal) == 0){
+											if($count == 0){
 												echo "<tr><td colspan='3'><div class='text-muted text-center'>Still empty.</div><td></tr>";
 											}
 										?>
@@ -79,6 +81,7 @@
 									</thead>
 									<tbody>
 										<?php
+											$count = 0;
 											foreach ($informal as $data) {
 												if($data["show"] == "1"){
 													echo "<tr>";
@@ -86,9 +89,10 @@
 													<td>" . $data['tahun'] . "</td>
 													<td>" . $data['deskripsi'] . "</td>";
 													echo "</tr>";
+													$count++;
 												}
 											} 
-											if(count($formal) == 0){
+											if($count == 0){
 												echo "<tr><td colspan='3'><div class='text-muted text-center'>Still empty.</div><td></tr>";
 											}
 										?>

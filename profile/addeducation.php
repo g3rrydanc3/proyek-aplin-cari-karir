@@ -39,6 +39,10 @@
 			$query = $db->getOne ("formal");
 		}
 		
+		if($query["user_id"] != $_SESSION["current"]){
+			header("location:error.php");
+		}
+		
 		if(!is_null($query)){
 			$sekolah = $query["sekolah"];
 			$tahun = $query["tahun"];

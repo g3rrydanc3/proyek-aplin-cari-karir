@@ -12,9 +12,17 @@
 				if(($_GET["edu"] == "formal" || $_GET["edu"] == "informal") && is_numeric($_GET["id"])){
 					
 					$id = $_GET["id"];
-					$db->where ("id", $_SESSION["current"]);
-					$user = $db->getOne ("user");
-					
+					$db->where("id", $id);
+					if($_GET["edu"] == "formal"){
+						if($db->getOne("formal")["user_id"] != $_SESSION["current"]){
+							header("location:error.php");
+						}
+					}
+					else{
+						if($db->getOne("informal")["user_id"] != $_SESSION["current"]){
+							header("location:error.php");
+						}
+					}
 					
 					
 					if($_GET["action"] == "show"){
@@ -23,7 +31,6 @@
 							$db->where ("user_id", $_SESSION["current"]);
 							$query = $db->getOne ("formal");
 							
-							$db->setTrace (true);
 							if(count($query) > 0){
 								$data = [];
 								if($query["show"] == "1"){

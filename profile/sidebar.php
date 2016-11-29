@@ -39,10 +39,10 @@
 								<i class=" 	glyphicon glyphicon-education"></i>
 								Education </a>
 							</li>
-							<li class="<?php active('experience.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>experience.php<?php echo passingGet();?>">
+							<li class="<?php active('workhistory.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>workhistory.php<?php echo passingGet();?>">
 								<i class="glyphicon glyphicon-briefcase"></i>
-								Work Experience </a>
+								Work History </a>
 							</li>
 						</ul>
 					</div>

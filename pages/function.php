@@ -1,7 +1,8 @@
 <?php
 	//menghindari direct access header,footer,db,dll
-	require_once("config.php");
-	require_once("MysqliDb.php");
+	if(!defined('Access')) {
+		die('Direct access not permitted');
+	}
 	$db = new MysqliDb ($db_server, $db_username, $db_password, $db_dbname);
 	$db->ping();
 	
@@ -52,6 +53,38 @@
 		$dir = $_SERVER['SERVER_NAME'] . "/" . getFolderWebsite() . "/";
 		return $dir;
 	}
+	
+		
+	
+	function getOption(){
+		$opt = Array(
+			"website_name" => "",
+			"email" => "",
+			"activation" => "",
+			"resend_activation_threshold" => "",
+			"languange" => ""
+		);
+		$option = $GLOBALS["db"]->get("option");
+		foreach($option as $data){
+			if($data["name"] == "website_name"){
+				$opt["website_name"] = $data["value"];
+			}
+			else if($data["name"] == "email"){
+				$opt["email"] = $data["value"];
+			}
+			else if($data["name"] == "activation"){
+				$opt["activation"] = $data["value"];
+			}
+			else if($data["name"] == "resend_activation_threshold"){
+				$opt["resend_activation_threshold"] = $data["value"];
+			}
+			else if($data["name"] == "languange"){
+				$opt["languange"] = $data["value"];
+			}
+		}
+		return $opt;
+	}
+	
 	
 	
 ?>

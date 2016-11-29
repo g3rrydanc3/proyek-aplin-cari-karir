@@ -3,6 +3,8 @@
 	if(!defined('Access')) {
 		die('Direct access not permitted');
 	}
+	require_once("config.php");
+	require_once("MysqliDb.php");
 	require_once("function.php");
 ?>
 
@@ -69,6 +71,9 @@
 						echo '><a href="http://' . getFolderUrl() . 'notification.php"><span class="badge">0</span> Notification</a></li>';
 						
 						echo '<li><a href="http://' . getFolderUrl() . 'logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+						if($_SESSION["current"] == 1){
+							echo '<li><a href="http://' . getFolderUrl() . 'admin/index.php"><span class=" 	glyphicon glyphicon-lock"></span> Admin</a></li>';
+						}
 					}
 					else{
 						echo '<li class=';
