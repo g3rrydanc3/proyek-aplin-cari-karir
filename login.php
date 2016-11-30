@@ -1,6 +1,6 @@
 <?php
 	define('Access', TRUE);
-	require_once("pages/header.php");
+	require_once("header.php");
 	$errors = array();
 	if(isset($_POST["signin"])){
 		
@@ -65,5 +65,5 @@
 	</div>
 	
 <?php
-	require_once("pages/footer.php");
+	require_once("footer.php");
 ?>

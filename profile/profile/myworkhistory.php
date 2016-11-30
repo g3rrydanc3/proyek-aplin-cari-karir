@@ -12,12 +12,15 @@
 		$gaji=$_POST["gaji"];
 		$deskripsi=$_POST["deskripsi"];
 		
+		$date1 = explode('-', $tgl_masuk);
+		$date2 = explode('-', $tgl_keluar);
+		
 		$data = Array (
 			'user_id' => $_SESSION["current"],
 			'nama_perusahaan' => $nama_perusahaan,
 			'gaji' => $gaji,
-			'tgl_masuk' => $tgl_masuk,
-			'tgl_keluar' => $tgl_keluar,
+			'tgl_masuk' => $date1[2] . "-" . $date1[1] . "-" . $date1[0],
+			'tgl_keluar' => $date2[2] . "-" . $date2[1] . "-" . $date2[0],
 			'posisi' => $posisi,
 			'gaji' => $gaji,
 			'deskripsi' => $deskripsi
@@ -37,6 +40,7 @@
 		else{
 			header("location:error.php");
 		}
+
 	}
 	else if(isset($_POST["edit"])){
 		$nama_perusahaan=$_POST["nama_perusahaan"];
@@ -47,11 +51,14 @@
 		$gaji=$_POST["gaji"];
 		$deskripsi=$_POST["deskripsi"];
 		
+		$date1 = explode('-', $tgl_masuk);
+		$date2 = explode('-', $tgl_keluar);
+		
 		$data = Array (
 			'nama_perusahaan' => $nama_perusahaan,
 			'gaji' => $gaji,
-			'tgl_masuk' => $tgl_masuk,
-			'tgl_keluar' => $tgl_keluar,
+			'tgl_masuk' => $date1[2] . "-" . $date1[1] . "-" . $date1[0],
+			'tgl_keluar' => $date2[2] . "-" . $date2[1] . "-" . $date2[0],
 			'posisi' => $posisi,
 			'gaji' => $gaji,
 			'deskripsi' => $deskripsi

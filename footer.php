@@ -31,13 +31,13 @@
 		</div>
 	</footer>
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="http://<?php echo getFolderUrl();?>js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/sweetalert.min.js"></script>
-	<script src="js/fileinput.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="http://<?php echo getFolderUrl();?>js/bootstrap.min.js"></script>
+	<script src="http://<?php echo getFolderUrl();?>js/sweetalert.min.js"></script>
+	<script src="http://<?php echo getFolderUrl();?>js/fileinput.min.js"></script>
+    <script src="http://<?php echo getFolderUrl();?>js/script.js"></script>
 	
 	<?php echo $javascript;?>
 </body>

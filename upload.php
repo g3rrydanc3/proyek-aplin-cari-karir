@@ -3,7 +3,7 @@
 		die('Direct access not permitted');
 	}
 	define('Access', TRUE);
-	require_once("pages/function.php");
+	require_once("config.php");
 	$output;
 	if (empty($_FILES['images'])) {
 		echo json_encode(['error'=>'No files found for upload.']); 

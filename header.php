@@ -4,8 +4,6 @@
 		die('Direct access not permitted');
 	}
 	require_once("config.php");
-	require_once("MysqliDb.php");
-	require_once("function.php");
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +62,7 @@
 							active("experience.php");
 							active("setting.php");
 						}
-						echo '><a href="http://' . getFolderUrl() . 'profile.php"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>';
+						echo '><a href="http://' . getFolderUrl() . 'profile/profile.php"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>';
 						
 						echo '<li class=';
 						active("notification.php");

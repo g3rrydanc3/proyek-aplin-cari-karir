@@ -1,6 +1,6 @@
 					<!-- SIDEBAR USERPIC -->
 					<div class="profile-userpic">
-						<img src="img/
+						<img src="http://<?php echo getFolderUrl();?>img/
 						<?php
 							if($user["foto"] == "0"){
 								echo "demo.png";
@@ -30,17 +30,17 @@
 					<div class="profile-usermenu">
 						<ul class="nav">
 							<li class="<?php active('profile.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>profile.php<?php echo passingGet();?>">
+								<a href="http://<?php echo getFolderUrl();?>profile/profile.php<?php echo passingGet();?>">
 								<i class="glyphicon glyphicon-home"></i>
 								Overview </a>
 							</li>
 							<li class="<?php active('education.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>education.php<?php echo passingGet();?>">
+								<a href="http://<?php echo getFolderUrl();?>profile/education.php<?php echo passingGet();?>">
 								<i class=" 	glyphicon glyphicon-education"></i>
 								Education </a>
 							</li>
 							<li class="<?php active('workhistory.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>workhistory.php<?php echo passingGet();?>">
+								<a href="http://<?php echo getFolderUrl();?>profile/workhistory.php<?php echo passingGet();?>">
 								<i class="glyphicon glyphicon-briefcase"></i>
 								Work History </a>
 							</li>

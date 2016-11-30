@@ -1,7 +1,7 @@
 <?php
 	//menghindari direct access header,footer,db,dll
 	define('Access', TRUE);
-	require_once("pages/header.php");
+	require_once("header.php");
 	
 	if(isset($_GET["confirm"])){
 		
@@ -13,5 +13,5 @@
 		</div>
 	</div>
 <?php
-	require_once("pages/footer.php");
+	require_once("footer.php");
 ?>
