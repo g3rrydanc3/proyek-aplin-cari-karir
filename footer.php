@@ -41,5 +41,4 @@
 	
 	<?php echo $javascript;?>
 </body>
-
 </html>

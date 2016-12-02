@@ -1,6 +1,9 @@
 <?php
 	define('Access', TRUE);
 	require_once("header.php");
+	require_once("pages/php-mailer/PHPMailerAutoload.php");
+	require_once("pages/email.php");
+	
 	$errors = array();
 	$success = "";
 	
@@ -83,13 +86,27 @@
 					$db->where('username', $username);
 					$temp = $db->getOne('user');
 					
-					$data = Array ("user_id" => $temp["id"],);
-					$insert = $db->insert ('user_setting_shown', $data);
+					$data1 = Array ("user_id" => $temp["id"]);
+					$insert = $db->insert ('user_setting_shown', $data1);
+					
+					$view_email = md5(uniqid($temp["id"], true));
+					$data2 = Array("user_id" => $temp["id"],
+						"email" => $view_email,
+						"type" => "register"
+					);
+					$insertEmail = $db->insert ('email', $data2);
 					if($insert){
-						$success = '<div class="alert alert-success">
-							<strong>Success!</strong> Registration Success. Check your email for account confirmation.
-						</div>';
 						unset($_POST);
+						$send = emailRegister($data, $view_email);
+						if($send == true){
+							$success = '<div class="alert alert-success">
+								<strong>Success!</strong> Registration Success. Check your email for account confirmation.
+							</div>';
+						}
+						else{
+							array_push($errors, "Registration Success, but email didn't send succesfully. Make sure you use legit email.");
+							array_push($errors, $send);
+						}
 					}
 					else{
 						array_push($errors, "Database fatal error");
