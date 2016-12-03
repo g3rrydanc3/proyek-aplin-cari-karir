@@ -114,7 +114,14 @@
 		$mail->Subject = "Job Comer - Account Confirmation";	
 		$mail->msgHTML($msg);
 		$mail->addAddress($data["email"], $data["name"]);
-	
+		
+		$mail->SMTPOptions = array(
+		'ssl' => array(
+				'verify_peer' => false,
+				'verify_peer_name' => false,
+				'allow_self_signed' => true
+			)
+		);
 		//send the message, check for errors
 		if (!$mail->send()) {
 			return $mail->ErrorInfo;
