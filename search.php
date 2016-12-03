@@ -11,3 +11,20 @@
 <?php
 	require_once("footer.php");
 ?>
+<head>
+	<link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.css">
+	<script src="js/jquery.js"></script>
+	<script src="jquery-ui-1.11.4/jquery-ui.js"></script>  
+	<script>
+		function cari(){
+			var arrKata = [
+			  "[Job]" + $("#q").val(),
+			  "[Company]" + $("#q").val(),
+			  "[User]" + $("#q").val()
+			];
+			$("#q").autocomplete({
+				source: arrKata
+			});
+		}
+	</script>
+</head>
