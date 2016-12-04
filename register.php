@@ -23,11 +23,10 @@
 			$lastName = trim($_POST["lastName"]);
 			$dob = trim($_POST["dob"]);
 			$gender = trim($_POST["gender"]);
-			$role = trim($_POST["role"]);
-			if(strlen($username) < 4){
+			if(strlen($username) < 3){
 				array_push($errors, "Username minimum 3 character");
 			}
-			if(strlen($password) < 9){
+			if(strlen($password) < 8){
 				array_push($errors, "Password minimum 8 character");
 			}
 			if(!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email)) {
@@ -52,9 +51,6 @@
 			if($password != $confirmPassword){
 				array_push($errors, "Password not same");
 			}
-			if($role != "Student" && $role != "Company"){
-				array_push($errors, "Role invalid");
-			}
 			
 			if(count($errors) == 0){
 				$db->where ('username', $username);
@@ -66,17 +62,12 @@
 					array_push($errors, "Email already registered");
 				}
 				if(count($errors) == 0){
-					$role1 = 1;
-					if($role == "Company"){
-						$role1 = 2;
-					}
 					$data = Array ("username" => $username,
 							   "password" => password_hash($password, PASSWORD_DEFAULT),
 							   "email" => $email,
 							   "name" => $firstName . " " . $lastName,
 							   "gender" => $gender,
 							   "birthdate" => $date[2] . "-" . $date[1] . "-" . $date[0],
-							   "role" => $role1,
 							   "activation_token" => sha1(mt_rand(10000,99999).time().$email),
 							   "sign_up_stamp" => date("Y-m-d H:i:s")
 					);
@@ -124,18 +115,19 @@
 
 	<div class="wrapper">
 		<div class="container">
-		<h1>Register</h1>
+		<h1>Register Student Account</h1>
+		<p class="text-muted"><a href="http://<?php echo getFolderUrl();?>company/register.php"><button type="button" class="btn btn-default btn-xs">Register Company Account</button></a> if you want to create a company account instead.</p>
 		<form class="form-horizontal" method="post" action="http://<?php echo getFolderUrl();?>register.php">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="username">Username</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="username" id="username" placeholder="Enter username" value="<?php if(isset($_POST['username'])){echo htmlentities($_POST['username']);}?>" required>
+					<input type="text" class="form-control" name="username" id="username" placeholder="Enter username (min. 3 character)" value="<?php if(isset($_POST['username'])){echo htmlentities($_POST['username']);}?>" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="password">Password</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
+					<input type="password" class="form-control" name="password" id="password" placeholder="Enter password (min. 8 character)" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -179,15 +171,6 @@
 					<input id="dob" name="dob" class="form-control" placeholder="DD-MM-YYYY" type="date" value="<?php if(isset($_POST['dob'])){echo htmlentities($_POST['dob']);}?>" required>
 				</div>
 			</div>
-			 <div class="form-group">
-				<label class="control-label col-sm-2" for="role">Role</label>
-				<div class="col-sm-10">
-					<select class="form-control" id="role" name="role">
-						<option selected>Student</option>
-						<option>Company</option>
-					</select>
-				</div>
-			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<div class="checkbox">
@@ -197,7 +180,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default" name="register">Submit</button>
+					<button type="submit" class="btn btn-primary" name="register">Submit</button>
 				</div>
 			</div>
 		</form>
