@@ -47,7 +47,7 @@
 			<ul class="nav navbar-nav navbar-right">
 			<li><form class="navbar-form" role="search" method="get" action="search.php">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search" name="q" id = "q" onkeyup="cari()">
+					<input type="text" class="form-control" placeholder="Search" name="q">
 					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 					</div>
@@ -87,3 +87,4 @@
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>
+
