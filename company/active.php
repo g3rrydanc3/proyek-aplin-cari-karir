@@ -1,6 +1,6 @@
 <?php
 	define('Access', TRUE);
-	require_once(__DIR__."/config.php");
+	require_once(__DIR__ . "/../config.php");
 	
 	$errors = [];
 	
@@ -13,7 +13,7 @@
 	else{
 		$db->where('activation_token', $_GET["active"]);
 		$db->where('email', $_GET["email"]);
-		$result = $db->getOne('user');
+		$result = $db->getOne('company');
 		if($result["active"] == "1"){
 			array_push($errors, "Account already activated.");
 		}
@@ -23,12 +23,12 @@
 		else{
 			$db->where('id', $result["id"]);
 			$data = Array("active" => "1");
-			if (!$db->update ('user', $data)){
+			if (!$db->update ('company', $data)){
 				header("location:error.php");
 			}
 		}
 	}
-	require_once("header.php");
+	require_once(__DIR__ . "/../header.php");
 ?>
 	<div class="wrapper">
 		<div class="container">
@@ -44,7 +44,7 @@
 				else{
 					foreach($errors as $error){
 						echo '<div class="alert alert-danger">
-								<strong>Error!</strong> '. $error .'.
+								<strong>Error!</strong> '. $error .'
 							</div>
 						';
 
@@ -56,5 +56,5 @@
 		</div>
 	</div>
 <?php
-	require_once("footer.php");
+	require_once(__DIR__ . "/../footer.php");
 ?>

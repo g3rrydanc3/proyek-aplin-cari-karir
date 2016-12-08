@@ -173,7 +173,9 @@
 						<div class="panel-heading">
 							<h2>Setting</h2>
 						</div>
-						<div class="panel-body">Email</div>
+						<div class="panel-body">
+							<a href="http://<?php echo getFolderUrl();?>passwordchange.php"><button type="button" class="btn btn-primary btn-block">Change Password</button></a>
+						</div>
 					</div>
 						
 					<div class="panel-group" id="accordion">

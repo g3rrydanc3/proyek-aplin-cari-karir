@@ -71,44 +71,40 @@
 							   "activation_token" => sha1(mt_rand(10000,99999).time().$email),
 							   "sign_up_stamp" => date("Y-m-d H:i:s")
 					);
-					
 					$insert = $db->insert ('user', $data);
 					
+					//refresh data after insert
 					$db->where('username', $username);
-					$temp = $db->getOne('user');
+					$data = $db->getOne('user');
 					
-					$data1 = Array ("user_id" => $temp["id"]);
-					$insert = $db->insert ('user_setting_shown', $data1);
-					
-					$view_email = md5(uniqid($temp["id"], true));
-					$data2 = Array("user_id" => $temp["id"],
-						"email" => $view_email,
-						"type" => "register"
-					);
-					$insertEmail = $db->insert ('email', $data2);
-					if($insert){
-						unset($_POST);
-						$send = emailRegister($data, $view_email);
-						if($send == true){
-							$success = '<div class="alert alert-success">
-								<strong>Success!</strong> Registration Success. Check your email for account confirmation.
-							</div>';
+					if(!empty($data)){
+						//user privacy
+						$data1 = Array ("user_id" => $data["id"]);
+						if($db->insert ('user_setting_shown', $data1)){
+							unset($_POST);
+							$send = emailRegister($data, $view_email);
+							if($send == true){
+								$success = '<div class="alert alert-success">
+									<strong>Success!</strong> Registration Success. Check your email for account confirmation.
+								</div>';
+							}
+							else{
+								array_push($errors, "Registration Success, but email didn't send succesfully. Make sure you use legit email." . $send);
+							}
 						}
 						else{
-							array_push($errors, "Registration Success, but email didn't send succesfully. Make sure you use legit email.");
-							array_push($errors, $send);
+							array_push($errors, "Database fatal error" . $db->getLastError());
 						}
 					}
 					else{
-						array_push($errors, "Database fatal error");
-						array_push($errors, $db->getLastError());
+						array_push($errors, "Database fatal error" . $db->getLastError());
 					}
 				}
 			}
 
 		}
 		else{
-			array_push($errors, "You must agree <a href='tos.php'>Term of Service</a>");
+			array_push($errors, "You must agree <a href='http://". getFolderUrl() . "contact.phptos.php'>Term of Service</a>");
 		}
 	}
 ?>
@@ -117,7 +113,7 @@
 		<div class="container">
 		<h1>Register Student Account</h1>
 		<p class="text-muted"><a href="http://<?php echo getFolderUrl();?>company/register.php"><button type="button" class="btn btn-default btn-xs">Register Company Account</button></a> if you want to create a company account instead.</p>
-		<form class="form-horizontal" method="post" action="http://<?php echo getFolderUrl();?>register.php">
+		<form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="username">Username</label>
 				<div class="col-sm-10">
@@ -174,7 +170,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<div class="checkbox">
-						<label><input type="checkbox" name="agree" required> Agree <a href='tos.php'>Term of Service</a></label>
+						<label><input type="checkbox" name="agree" required> Agree <a href='http://<?php echo getFolderUrl();?>tos.php'>Term of Service</a></label>
 					</div>
 				</div>
 			</div>

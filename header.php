@@ -45,7 +45,7 @@
 				<li class="<?php active('contact.php');?>"><a href="http://<?php echo getFolderUrl();?>contact.php">Contact</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			<li><form class="navbar-form" role="search" method="get" action="search.php">
+			<li><form class="navbar-form" role="search" method="get" action="http://<?php echo getFolderUrl();?>search.php">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search" name="q">
 					<div class="input-group-btn">

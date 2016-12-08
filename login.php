@@ -20,7 +20,7 @@
 				array_push($errors, "Account haven't actived, Check your email.");
 			}
 			else if($results["lost_password_request"] != "0"){
-				array_push($errors, "Account had did reset password, Check your email.");
+				array_push($errors, "Account had requested reset password, Check your email.");
 			}
 			else{
 				$_SESSION["current"] = $results['id'];
