@@ -4,7 +4,12 @@
 	require_once( __DIR__.'/../header.php');
 	
 	if(strlen($_SESSION["current"]) == 0){
-		require_once("profile/profile.php");
+		if(!isset($GET["id"])){
+			header("location:http://". getFolderUrl() ."error.php");
+		}
+		else{
+			require_once("profile/profile.php");
+		}
 	}
 	else{
 		if(!isset($_GET["id"])){
