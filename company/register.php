@@ -54,7 +54,7 @@
 			
 			$ext = explode('.', basename($_FILES["logo"]['name']));
 			$filename = $username . "." . array_pop($ext);
-			$target = "img/company/" . $filename;
+			$target = "../img/company/" . $filename;
 			$imageFileType = pathinfo($target,PATHINFO_EXTENSION);
 
 			// Check if image file is a actual image or fake image
@@ -76,7 +76,7 @@
 				array_push($errors, "Sorry, there was an error uploading your file.");
 			}
 			if(count($errors) == 0){
-				$db->setTrace (true);
+				//$db->setTrace (true);
 				$db->where ('username', $username);
 				if($db->has('company')){
 					array_push($errors, "Username already exist");
@@ -131,7 +131,7 @@
 						array_push($errors, $db->getLastError());
 					}
 				}
-				print_r ($db->trace);
+				//print_r ($db->trace);
 			}
 			
 		}
@@ -161,7 +161,7 @@
 		<div class="container">
 			<h1>Register Company Account</h1>
 			<p class="text-muted"><a href="http://<?php echo getFolderUrl();?>register.php"><button type="button" class="btn btn-default btn-xs">Register Student Account</button></a> if you want to create a student account instead.</p>
-			<form class="form-horizontal" method="post" action="http://<?php echo getFolderUrl();?>register_company.php" enctype="multipart/form-data">
+			<form class="form-horizontal" method="post" action="http://<?php echo getFolderUrl();?>company/register.php" enctype="multipart/form-data">
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="username">Username <span class="glyphicon glyphicon-asterisk"></span></label>
 					<div class="col-sm-10">

@@ -192,7 +192,7 @@
 		//$mail->AltBody = '<a href='. $link .'>Click here if you can\'t see this email</a>';
 		$mail->Subject = "Job Comer - Company Account Confirmation";	
 		$mail->msgHTML($msg);
-		$mail->addAddress($data["email"], $data["name"]);
+		$mail->addAddress($data["email"], $data["nama"]);
 		
 		$mail->SMTPOptions = array(
 		'ssl' => array(
