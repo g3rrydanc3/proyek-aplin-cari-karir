@@ -20,7 +20,7 @@
 				foreach($query1 as $data){
 					echo '
 					<div class="panel panel-default">
-						<div class="panel-heading">[Job]'. $data["nama"] .' </div>
+						<div class="panel-heading"><a href = "viewjob.php">[Job]'. $data["nama"] .' </a></div>
 						<div class="panel-body">'. $data["deskripsi"] .' </div>
 					</div>
 					';
@@ -36,7 +36,7 @@
 				foreach($query2 as $data){
 					echo '
 					<div class="panel panel-default">
-						<div class="panel-heading">[User]'. $data["name"] .' </div>
+						<div class="panel-heading"><a href = "viewuser.php">[User]'. $data["name"] .' </a></div>
 							<div class="panel-body"> 
 								<div class="col-sm-3">
 									<div class="profile-userpic">
@@ -50,7 +50,18 @@
 										echo '" class="img-responsive" alt="'. $data["foto"] .'">
 									</div>
 								</div>
-								<div class="col-sm-9">';
+								<div class="col-sm-1">';
+									$db->where ("user_id", $data["id"]);
+									$setting = $db->getOne ("user_setting_shown");
+									$db->where ("id", $data["id"]);
+									$queryBirthDate = $db->getOne ("user", "DATE_FORMAT(birthdate,'%d-%m-%Y')");
+									$queryBirthDate = reset($queryBirthDate);
+									if($setting["birthdate"] == 1)
+										echo '<p style = "text-align: right;">Birthdate: </p>';
+									if($setting["address"] == 1)
+										echo '<p style = "text-align: right;">Address: </p>';
+								echo '</div>
+								<div class="col-sm-8">';
 									$db->where ("user_id", $data["id"]);
 									$setting = $db->getOne ("user_setting_shown");
 									$db->where ("id", $data["id"]);
@@ -76,7 +87,7 @@
 				foreach($query3 as $data){
 					echo '
 					<div class="panel panel-default">
-						<div class="panel-heading">[Company]'. $data["nama"] .' </div>
+						<div class="panel-heading"><a href = "viewcompany.php">[Company]'. $data["nama"] .' </a></div>
 							<div class="panel-body"> 
 								<div class="col-sm-3">
 									<div class="profile-userpic">
@@ -90,7 +101,8 @@
 										echo '" class="img-responsive" alt="'. $data["logo"] .'">
 									</div>
 								</div>
-								<div class="col-sm-9"><p>'. $data["nama"] . '</p><p>'.$data["alamat"].'</p><p>'.$data["tel"].'</p>
+								<div class="col-sm-1"><p style = "text-align: right;"> Nama: </p><p style = "text-align: right;"> Alamat: </p><p style = "text-align: right;">Telp: </p></div>
+								<div class="col-sm-8"><p>'. $data["nama"] . '</p><p>'.$data["alamat"].'</p><p>'.$data["tel"].'</p>
 							</div>
 						</div>
 					';
