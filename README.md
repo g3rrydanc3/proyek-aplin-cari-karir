@@ -3,17 +3,21 @@ Proyek Aplin STTS 2016
 ##Library :
 ###Back-end :
 - [joshcam/PHP-MySQLi-Database-Class](https://github.com/joshcam/PHP-MySQLi-Database-Class)
+- [PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
+- [Message System](http://www.9lessons.info/2013/05/message-conversation-database-design.html)
 
 ###Front-end :
+- [jQuery](https://jquery.com/)
 - [Bootstrap](http://getbootstrap.com/)
 - [Landing Page (Start Bootstrap)](https://startbootstrap.com/template-overviews/landing-page/)
 - [lipis/bootstrap-sweetalert](https://lipis.github.io/bootstrap-sweetalert/)
+- [kartik-v/bootstrap-fileinput](http://plugins.krajee.com/file-input)
 
 ##Team :
-g3rrydanc3
-alfonsiaronna
-edricwahyu
-~~Andhika21~~
+- g3rrydanc3
+- alfonsiaronna
+- edricwahyu
+- Andhika21
 
 ## Installation
 1. Import database from `job_comer.sql`
@@ -26,9 +30,9 @@ edricwahyu
   
 ## TODO List
 - [X] Login, Register
-- [ ] Forgot Password
+- [X] Forgot Password
 - [ ] Index
-- [ ] Profile
+- [X] Profile
 - [ ] Job
-- [ ] Email
+- [X] Email
 - [ ] Notification
