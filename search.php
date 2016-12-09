@@ -36,11 +36,11 @@
 				foreach($query2 as $data){
 					echo '
 					<div class="panel panel-default">
-						<div class="panel-heading"><a href = "viewuser.php">[User]'. $data["name"] .' </a></div>
+						<div class="panel-heading"><a href = "profile/profile.php?id='.$data["id"].'">[User]'. $data["name"] .' </a></div>
 							<div class="panel-body"> 
 								<div class="col-sm-3">
 									<div class="profile-userpic">
-										<img src="http://'. getFolderUrl().'img/';
+										<a href = "profile/profile.php?id='.$data["id"].'"><img src="http://'. getFolderUrl().'img/';
 											if($data["foto"] == "0"){
 												echo "demo.png";
 											}
@@ -48,6 +48,7 @@
 												echo "user/" . $data["foto"];
 											}
 										echo '" class="img-responsive" alt="'. $data["foto"] .'">
+										</a>
 									</div>
 								</div>
 								<div class="col-sm-1">';
