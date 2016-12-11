@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Job Comer</title>
+    <title><?php echo getOption("website_name");?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://<?php echo getFolderUrl();?>css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="http://<?php echo getFolderUrl();?>index.php">Job Comer</a>
+			<a class="navbar-brand" href="http://<?php echo getFolderUrl();?>index.php"><?php echo getOption("website_name");?></a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
