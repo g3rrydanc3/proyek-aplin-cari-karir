@@ -36,3 +36,21 @@ Proyek Aplin STTS 2016
 - [ ] Job
 - [X] Email
 - [ ] Notification
+- [X] Sign up
+- [X] Login
+- [X] Upload Foto
+- Student
+- [ ] Email(_notifikasi_, daftar)
+- [ ] Notification(website & email)
+- [ ] Curiculum Vitae
+- [ ] Cari pekerjaan
+- [ ] Report pekerjaan palsu
+- [ ] Suggestion pekerjaan
+- [ ] Message antar user
+- [ ] Skill
+- Admin
+- [ ] Tambah pekerjaan
+- [X] Manage pendaftar
+- [ ] Manage pekerjaan palsu
+- [X] Ganti data mahasiswa,perusahaan
+- [X] Melihat semua data
