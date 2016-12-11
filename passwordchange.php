@@ -42,7 +42,13 @@
 		$password = trim($_POST["password"]);
 		$confirmPassword = trim($_POST["confirmPassword"]);
 		$db->where ("id", $_SESSION["current"]);
-		$pwdlama = $db->getOne ("user")["password"];
+		$pwdlama = null;
+		if(is_numeric($_SESSION["role"])){
+			$pwdlama = $db->getOne ("user")["password"];
+		}
+		else{
+			$pwdlama = $db->getOne ("company")["password"];
+		}
 		
 		if(password_verify($oldPassword, $pwdlama)){
 			if(strlen($password) < 9){
@@ -54,10 +60,19 @@
 			if(count($errors) == 0){
 				$data = Array ("password" => password_hash($password, PASSWORD_DEFAULT));
 				$db->where ('id', $_SESSION["current"]);
-				if($db->update('user', $data)){
-					$success = '<div class="alert alert-success">
-								<strong>Success!</strong> Change password success.
-							</div>';
+				if(is_numeric($_SESSION["role"])){
+					if($db->update('user', $data)){
+						$success = '<div class="alert alert-success">
+									<strong>Success!</strong> Change password success.
+								</div>';
+					}
+				}
+				else{
+					if($db->update('company', $data)){
+						$success = '<div class="alert alert-success">
+									<strong>Success!</strong> Change password success.
+								</div>';
+					}
 				}
 				else{
 					array_push($errors, "Database error! Contact admin to change password.");

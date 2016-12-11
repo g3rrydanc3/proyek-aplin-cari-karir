@@ -139,6 +139,7 @@
 			uploadExtraData: function() {
 				return {
 					id: " . $_SESSION["current"] . ",
+					role: '". $_SESSION['role'] ."',
 					Access: '1'
 				}
 			}

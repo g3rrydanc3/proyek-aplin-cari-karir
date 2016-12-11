@@ -31,12 +31,13 @@
 		<div class="col-sm-9">
 			<h1>Setting</h1>
 			<form class="form-horizontal" method="post" action="setting.php">
-				<?php foreach(getOption() as $key => $data){
+				<?php 
+				foreach($db->get("option") as $key => $data){
 					echo '
 						<div class="form-group">
-							<label class="control-label col-sm-2" for="'. $key .'">'. $key .'</label>
+							<label class="control-label col-sm-2" for="'. $data["name"] .'">'. $data["name"] .'</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="'. $key .'" name="'. $key .'" placeholder="Enter '. $key .'" value="'. $data .'">
+								<input type="text" class="form-control" id="'. $data["name"] .'" name="'. $data["name"] .'" placeholder="Enter '. $data["name"] .'" value="'. $data["value"] .'">
 							</div>
 						</div>
 					';

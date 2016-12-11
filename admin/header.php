@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Admin <?php echo getOption()["website_name"];?></title>
+	<title>Admin <?php echo getOption("website_name");?></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -62,11 +62,12 @@
 <div class="container-fluid">
 	<div class="row content">
 	<div class="col-sm-3 sidenav">
-		<h2>Admin <?php echo getOption()["website_name"];?></h2>
+		<h2>Admin <?php echo getOption("website_name");?></h2>
 		<ul class="nav nav-pills nav-stacked">
 			<li><a href="../index.php">Kembali ke website</a></li>
 			<li><a href="setting.php">Setting</a></li>
-			<li><a href="data.php">Data</a></li>
+			<li><a href="data.php">Data Student</a></li>
+			<li><a href="data_company.php">Data Company</a></li>
 			<li><a href="report.php">Report Palsu</a></li>
 		</ul>
 	</div>

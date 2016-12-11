@@ -3,16 +3,19 @@
 		die('Direct access not permitted');
 	}
 	
-	$db->where ("id", $_SESSION["current"]);
+	$db->where ("id", $_GET["id"]);
 	$company = $db->getOne ("company");
+	if(empty($company)){
+		header("location:http://". getFolderUrl() ."error.php");
+	}
 ?>
 <div class="wrapper">
 	<div class="container">
-		<h1>My Company Profile</h1>
+		<h1>Company Profile</h1>
 		<div class="row profile">
 			<div class="col-sm-3">
 				<div class="profile-sidebar">
-					<?php require_once("mysidebar.php");?>
+					<?php require_once("company/profile/sidebar.php");?>
 				</div>
 			</div>
 			<div class="col-sm-9">

@@ -2,22 +2,22 @@
 					<div class="profile-userpic">
 						<img src="http://<?php echo getFolderUrl();?>img/
 						<?php
-							if($user["foto"] == "0"){
+							if($company["logo"] == "0"){
 								echo "demo.png";
 							}
 							else{
-								echo "user/" . $user["foto"];
+								echo "company/" . $company["logo"];
 							}
-						?>" class="img-responsive" alt="<?php echo $user["foto"];?>">
+						?>" class="img-responsive" alt="<?php echo $company["logo"];?>">
 					</div>
 					<!-- END SIDEBAR USERPIC -->
 					<!-- SIDEBAR USER TITLE -->
 					<div class="profile-usertitle">
 						<div class="profile-usertitle-name">
-							<?php echo $user["name"];?>
+							<?php echo $company["nama"];?>
 						</div>
 						<div class="profile-usertitle-job">
-							<?php echo $queryRole;?>
+							COMPANY
 						</div>
 					</div>
 					<!-- END SIDEBAR USER TITLE -->
@@ -32,19 +32,9 @@
 					<div class="profile-usermenu">
 						<ul class="nav">
 							<li class="<?php active('profile.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>profile/profile.php<?php echo passingGet();?>">
+								<a href="http://<?php echo getFolderUrl();?>company.php<?php echo passingGet();?>">
 								<i class="glyphicon glyphicon-home"></i>
 								Overview </a>
-							</li>
-							<li class="<?php active('education.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>profile/education.php<?php echo passingGet();?>">
-								<i class=" 	glyphicon glyphicon-education"></i>
-								Education </a>
-							</li>
-							<li class="<?php active('workhistory.php');?>">
-								<a href="http://<?php echo getFolderUrl();?>profile/workhistory.php<?php echo passingGet();?>">
-								<i class="glyphicon glyphicon-briefcase"></i>
-								Work History </a>
 							</li>
 						</ul>
 					</div>

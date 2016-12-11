@@ -23,6 +23,7 @@
     <link href="http://<?php echo getFolderUrl();?>css/landing-page.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/sweetalert.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/fileinput.min.css" rel="stylesheet">
+    <link href="http://<?php echo getFolderUrl();?>css/daterangepicker.css" rel="stylesheet">
 	<link href="http://<?php echo getFolderUrl();?>css/style.css" rel="stylesheet">
 
 </head>
@@ -62,7 +63,13 @@
 							active("experience.php");
 							active("setting.php");
 						}
-						echo '><a href="http://' . getFolderUrl() . 'profile/profile.php"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>';
+						if(!is_numeric($_SESSION["role"])){
+							echo '><a href="http://' . getFolderUrl() . 'company/profile.php"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>';
+						}
+						else{
+							echo '><a href="http://' . getFolderUrl() . 'profile/profile.php"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>';
+						}
+						
 						
 						echo '<li class=';
 						active("notification.php");

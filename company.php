@@ -1,24 +1,25 @@
 <?php
 	//menghindari direct access header,footer,db,dll
 	define('Access', TRUE);
-	require_once(__DIR__ . '/../header.php');
+	require_once('header.php');
 	
 	if(!strlen($_SESSION["current"]) == 0 && !is_numeric($_SESSION["role"])){	//company login
+		require_once('header.php');
 		if(!isset($_GET["id"])){
-			require_once("profile/myprofile.php");
+			header("location:http://". getFolderUrl() ."company/profile.php");
 		}
 		else{
-			header("location:http://". getFolderUrl() ."company.php" . passingGet());
+			require_once("company_view.php");
 		}
+		require_once('footer.php');
 	}
 	else{	//student or guest
 		if(!isset($_GET["id"])){
 			header("location:http://". getFolderUrl() ."error.php");
 		}
 		else{
-			require_once("profile/profile.php");
+			require_once("company_view.php");
 		}
 	}
-	require_once(__DIR__ . '/../header.php');
-	
+	require_once('footer.php');
 ?>

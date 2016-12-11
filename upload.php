@@ -14,17 +14,33 @@
 		
 		$ext = explode('.', basename($images['name']));
 		$filename = $id . "." . array_pop($ext);
-		$target = "img/user/" . $filename;
+		$target = null;
+		if($_POST["role"] == "Company"){
+			$target = "img/company/" . $filename;
+		}
+		else{
+			$target = "img/user/" . $filename;
+		}
+		
 		if(move_uploaded_file($images['tmp_name'], $target)) {
-			$data = Array (
-				'foto' => $filename
-			);
 			$db->where ('id', $id);
-			if ($db->update ('user', $data)){
-				$output = ['uploaded' => 'Success'];
+			if($_POST["role"] == "Company"){
+				$data = Array ('logo' => $filename);
+				if ($db->update ('company', $data)){
+					$output = ['uploaded' => 'Success'];
+				}
+				else{
+					$output = ['error'=>'Error while uploading images. Contact the system administrator'];
+				}
 			}
 			else{
-				$output = ['error'=>'Error while uploading images. Contact the system administrator'];
+				$data = Array ('foto' => $filename);
+				if ($db->update ('user', $data)){
+					$output = ['uploaded' => 'Success'];
+				}
+				else{
+					$output = ['error'=>'Error while uploading images. Contact the system administrator'];
+				}
 			}
 		} else {
 			$output = ['error'=>'Error while uploading images. Contact the system administrator'];

@@ -37,6 +37,8 @@
     <script src="http://<?php echo getFolderUrl();?>js/bootstrap.min.js"></script>
 	<script src="http://<?php echo getFolderUrl();?>js/sweetalert.min.js"></script>
 	<script src="http://<?php echo getFolderUrl();?>js/fileinput.min.js"></script>
+	<script src="http://<?php echo getFolderUrl();?>js/moment.min.js"></script>
+	<script src="http://<?php echo getFolderUrl();?>js/daterangepicker.js"></script>
     <script src="http://<?php echo getFolderUrl();?>js/script.js"></script>
 	
 	<?php echo $javascript;?>

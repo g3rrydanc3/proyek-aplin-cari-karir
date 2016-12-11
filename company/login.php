@@ -1,15 +1,12 @@
 <?php
 	define('Access', TRUE);
-	require_once("header.php");
+	require_once(__DIR__ . "/../header.php");
 	$errors = array();
 	if(isset($_POST["signin"])){
 		$username = trim($_POST["inputUsername"]);
 		$password = trim($_POST["inputPassword"]);
 		$db->where('username', $username);
 		$results = $db->getOne('company');
-		array_push($errors, json_encode($results));
-		array_push($errors, json_encode($_POST));
-		array_push($errors, password_verify($password, $results['password']));
 		if(empty($results)){
 			array_push($errors, "Username doesn't exist");
 		}
@@ -66,5 +63,5 @@
 	</div>
 	
 <?php
-	require_once("footer.php");
+	require_once(__DIR__ . "/../footer.php");
 ?>

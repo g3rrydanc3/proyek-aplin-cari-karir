@@ -2,11 +2,11 @@
 	require_once("header.php");
 	
 	
-	$user=[];
+	$company=[];
 	if(!empty($_GET)){
 		if($_GET["action"] == "delete"){
 			$db->where("id", $_GET["id"]);
-			if($db->delete('user')){
+			if($db->delete('company')){
 				echo "
 					<script>
 						swal({
@@ -26,14 +26,14 @@
 		}
 		else{
 			$db->where("id", $_GET["id"]);
-			$user = $db->getOne("user");
+			$company = $db->getOne("company");
 		}
 	}
 	
 	
 	if(!empty($_POST)){
 		$db->where ('id', $_POST["id"]);
-		if ($db->update ('user', $_POST))
+		if ($db->update ('company', $_POST))
 			echo "
 				<script>
 					swal({
@@ -61,7 +61,7 @@
 				<div id="kv-avatar-errors-2" class="center-block" style="display:none"></div>
 				<?php 
 					if(!empty($_GET)){
-						foreach($user as $key => $data){
+						foreach($company as $key => $data){
 							echo '
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="'. $key .'">'. $key .'</label>
@@ -108,12 +108,12 @@ echo "
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
 			uploadClass: 'btn btn-primary',
-			defaultPreviewContent: '<div class=\"profile-userpic\"><img src=\"../img/";
-			if($user["foto"] == "0"){
+			defaultPreviewContent: '<div class=\"profile-companypic\"><img src=\"../img/";
+			if($company["logo"] == "0"){
 				echo "demo.png";
 			}
 			else{
-				echo "user/" . $user["foto"];
+				echo "company/" . $company["logo"];
 			}
 			echo "\" alt=\"Your Avatar\"></div><h6 class=\"text-muted\">Click to change photo</h6>',
 			layoutTemplates: {main2: '{preview}'},
@@ -122,7 +122,7 @@ echo "
 			uploadExtraData: function() {
 				return {
 					id: " . $_GET["id"] . ",
-					role: '1',
+					role: 'company',
 					Access: '1'
 				}
 			}

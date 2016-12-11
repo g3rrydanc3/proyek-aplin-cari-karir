@@ -83,4 +83,9 @@
 		$GLOBALS["db"]->where("name", $opt);
 		return $GLOBALS["db"]->getOne("option")["value"];
 	}
+	
+	function validateDate($date, $format = 'd-m-Y'){
+		$d = DateTime::createFromFormat($format, $date);
+		return $d && $d->format($format) == $date;
+	}
 ?>
