@@ -14,11 +14,18 @@
 	date_default_timezone_set('Asia/Jakarta');
 	///////////////////END OF CONFIG///////////////////
 	
+	
+	
+	
+	
+	
 	require_once("pages/MysqliDb.php");
 	
+	//init mysql
 	$db = new MysqliDb (DB_SERVER, DB_USER, DB_PASSWORD, DB_DBNAME);
 	$db->ping();
 	
+	//init session
 	session_start();
 	
 	if(!isset($_SESSION["current"])){
@@ -31,6 +38,7 @@
 	$javascript="";
 	$errors=[];
 	
+	//passing get for profile
 	function passingGet(){
 		if(isset($_GET)){
 			$numItems = count($_GET);
@@ -52,6 +60,7 @@
 		}
 	}
 	
+	//for some html tag that needs "active" class
 	function active($currect_page){
 		$url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
 		$url = end($url_array);
@@ -62,38 +71,16 @@
 		}
 	}
 	
+	//get website root directory
 	function getFolderUrl(){
 		$url = $_SERVER['REQUEST_URI'];
 		$dir = $_SERVER['SERVER_NAME'] . "/" . CONFIG_FOLDER;
 		return $dir;
 	}
 	
-	function getOption(){
-		$opt = Array(
-			"website_name" => "",
-			"email" => "",
-			"activation" => "",
-			"resend_activation_threshold" => "",
-			"languange" => ""
-		);
-		$option = $GLOBALS["db"]->get("option");
-		foreach($option as $data){
-			if($data["name"] == "website_name"){
-				$opt["website_name"] = $data["value"];
-			}
-			else if($data["name"] == "email"){
-				$opt["email"] = $data["value"];
-			}
-			else if($data["name"] == "activation"){
-				$opt["activation"] = $data["value"];
-			}
-			else if($data["name"] == "resend_activation_threshold"){
-				$opt["resend_activation_threshold"] = $data["value"];
-			}
-			else if($data["name"] == "languange"){
-				$opt["languange"] = $data["value"];
-			}
-		}
-		return $opt;
+	//get website option (refer to table "option")
+	function getOption($opt){
+		$GLOBALS["db"]->where("name", $opt);
+		return $GLOBALS["db"]->getOne("option")["value"];
 	}
 ?>

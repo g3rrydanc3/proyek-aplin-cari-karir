@@ -1,6 +1,6 @@
 <?php
 	define('Access', TRUE);
-	require_once(__DIR__ . "/../config.php");
+	require_once(__DIR__ . "header.php");
 	
 	$errors = [];
 	
@@ -28,7 +28,6 @@
 			}
 		}
 	}
-	require_once(__DIR__ . "/../header.php");
 ?>
 	<div class="wrapper">
 		<div class="container">
@@ -56,5 +55,5 @@
 		</div>
 	</div>
 <?php
-	require_once(__DIR__ . "/../footer.php");
+	require_once(__DIR__ . "footer.php");
 ?>

@@ -1,6 +1,6 @@
 <?php
 	define('Access', TRUE);
-	require_once( __DIR__ . "/../header.php");
+	require_once("header.php");
 	require_once( __DIR__ . "/../pages/php-mailer/PHPMailerAutoload.php");
 	require_once( __DIR__ . "/../pages/email.php");
 	
@@ -107,7 +107,7 @@
 						$send = emailRegisterCompany($data);
 						if($send == true){
 							$success = '<div class="alert alert-success">
-								<strong>Success!</strong> Registration Success. Check your email for account confirmation.
+								<strong>Success!</strong> '.password_hash($password, PASSWORD_DEFAULT) . $password .'Registration Success. Check your email for account confirmation.
 							</div>';
 						}
 						else{
@@ -235,5 +235,5 @@
 	</div>
 	
 <?php
-	require_once( __DIR__ . "/../footer.php");
+	require_once("footer.php");
 ?>

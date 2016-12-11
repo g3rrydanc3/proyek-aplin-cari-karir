@@ -1,7 +1,7 @@
 <?php
 	//menghindari direct access header,footer,db,dll
 	define('Access', TRUE);
-	require_once( __DIR__.'/../header.php');
+	require_once('header.php');
 	
 	if(strlen($_SESSION["current"]) == 0){
 		if(!isset($_GET["id"])){
@@ -13,12 +13,12 @@
 	}
 	else{
 		if(!isset($_GET["id"])){
-			require_once("company/myprofile.php");
+			require_once("company/profile/myprofile.php");
 		}
 		else{
-			require_once("company/profile.php");
+			require_once("company/profile/profile.php");
 		}
 	}
 	
-	require_once( __DIR__.'/../footer.php');
+	require_once('footer.php');
 ?>

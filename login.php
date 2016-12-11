@@ -3,22 +3,19 @@
 	require_once("header.php");
 	$errors = array();
 	if(isset($_POST["signin"])){
-		
-		$username = $_POST["inputUsername"];
-		$password = $_POST["inputPassword"];
+		$username = trim($_POST["inputUsername"]);
+		$password = trim($_POST["inputPassword"]);
 		$db->where('username', $username);
 		$results = $db->getOne('user');
 		if(empty($results)){
 			array_push($errors, "Username doesn't exist");
 		}
 		else if(password_verify($password, $results['password'])){
-			$db->where("name", "activation");
-			$activation = $db->getOne("option");
-			$activation = $activation["value"];
-			
-			if($activation == "1" && $results["active"] == "0"){
+			//check website option needs activation
+			if(getOption("activation") == "1" && $results["active"] == "0"){
 				array_push($errors, "Account haven't actived, Check your email.");
 			}
+			//check if the account having lost password
 			else if($results["lost_password_request"] != "0"){
 				array_push($errors, "Account had requested reset password, Check your email.");
 			}
@@ -39,8 +36,9 @@
 ?>
 	<div class="wrapper">
 		<div class="container">
-			<form class="form-signin" method="post" action="http://<?php echo getFolderUrl();?>login.php">
-				<h2 class="form-signin-heading">Sign in</h2>
+			<form class="form-signin" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+				<h2 class="form-signin-heading">Sign in Student</h2>
+				<p class="text-muted"><a href="http://<?php echo getFolderUrl();?>company/login.php"><button type="button" class="btn btn-default btn-xs">Login Company Account</button></a></p>
 				<label for="inputUsername" class="sr-only">Username</label>
 				<input type="text" id="inputUsername" class="form-control" placeholder="Username" name="inputUsername" required autofocus>
 				<label for="inputPassword" class="sr-only">Password</label>
