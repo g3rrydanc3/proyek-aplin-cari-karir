@@ -12,6 +12,7 @@ Proyek Aplin STTS 2016
 - [Landing Page (Start Bootstrap)](https://startbootstrap.com/template-overviews/landing-page/)
 - [lipis/bootstrap-sweetalert](https://lipis.github.io/bootstrap-sweetalert/)
 - [kartik-v/bootstrap-fileinput](http://plugins.krajee.com/file-input)
+- [dangrossman/bootstrap-daterangepicker](http://daterangepicker.com/)
 
 ##Team :
 - g3rrydanc3
