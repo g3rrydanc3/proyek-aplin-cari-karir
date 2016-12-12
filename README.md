@@ -4,7 +4,7 @@ Proyek Aplin STTS 2016
 ###Back-end :
 - [joshcam/PHP-MySQLi-Database-Class](https://github.com/joshcam/PHP-MySQLi-Database-Class)
 - [PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
-- [Message System](http://www.9lessons.info/2013/05/message-conversation-database-design.html)
+- [Message System](http://forum.sz-ex.com/thread/9406/php-simple-private-messaging-system)
 
 ###Front-end :
 - [jQuery](https://jquery.com/)
