@@ -51,6 +51,9 @@
 			if($password != $confirmPassword){
 				array_push($errors, "Password not same");
 			}
+			if(date_format(date_create_from_format('d-m-Y', $dob), "Y-m-d") > date("Y-m-d")){
+				array_push($errors, "Date of birth must be greater than now");
+			}
 			
 			if(count($errors) == 0){
 				$db->where ('username', $username);
@@ -194,3 +197,16 @@
 <?php
 	require_once("footer.php");
 ?>
+
+<script>
+$('#dob').daterangepicker({
+    "singleDatePicker": true,
+    "showDropdowns": true,
+	"autoApply": true,
+	"linkedCalendars": false,
+	"autoUpdateInput": true,
+	locale: {
+		format: "DD-MM-YYYY"
+	}
+});
+</script>
