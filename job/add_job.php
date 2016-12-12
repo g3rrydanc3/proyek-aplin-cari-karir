@@ -43,19 +43,6 @@
 			}
 		}
 	}
-	$javascript .= '<script>$(\'#tgl_batas\').daterangepicker({
-			"singleDatePicker": true,
-			"showDropdowns": true,
-			"timePicker": true,
-			"autoApply": true,
-			"linkedCalendars": false,
-			"autoUpdateInput": true,
-			"showCustomRangeLabel": false,
-			"timePicker24Hour":true,
-			locale: {
-				format: "DD-MM-YYYY hh:mm:ss"
-			}
-		});</script>';
 ?>
 	<div class="wrapper">
 		<div class="container">
@@ -110,3 +97,17 @@
 <?php
 	require_once(__DIR__ . "/../footer.php");
 ?>
+<script>
+$(\'#tgl_batas\').daterangepicker({
+	"singleDatePicker": true,
+	"showDropdowns": true,
+	"timePicker": true,
+	"autoApply": true,
+	"linkedCalendars": false,
+	"autoUpdateInput": true,
+	"showCustomRangeLabel": false,
+	"timePicker24Hour":true,
+	locale: {
+		format: "DD-MM-YYYY hh:mm:ss"
+	}
+});</script>
