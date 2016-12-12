@@ -39,6 +39,11 @@
 								<i class="glyphicon glyphicon-briefcase"></i>
 								Work History </a>
 							</li>
+							<li class="<?php active('message.php'); active('message_view.php')?>">
+								<a href="http://<?php echo getFolderUrl();?>profile/message.php">
+								<i class="glyphicon glyphicon-envelope"></i>
+								Message </a>
+							</li>
 							<li class="<?php active('setting.php');?>">
 								<a href="http://<?php echo getFolderUrl();?>profile/setting.php">
 								<i class="glyphicon glyphicon-wrench"></i>

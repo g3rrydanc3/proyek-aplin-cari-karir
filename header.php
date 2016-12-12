@@ -24,6 +24,7 @@
     <link href="http://<?php echo getFolderUrl();?>css/sweetalert.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/fileinput.min.css" rel="stylesheet">
     <link href="http://<?php echo getFolderUrl();?>css/daterangepicker.css" rel="stylesheet">
+    <link href="http://<?php echo getFolderUrl();?>css/summernote.css" rel="stylesheet">
 	<link href="http://<?php echo getFolderUrl();?>css/style.css" rel="stylesheet">
 
 </head>
