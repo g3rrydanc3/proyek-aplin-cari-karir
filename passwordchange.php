@@ -90,7 +90,12 @@
 		$db->where("activation_token", $_POST["key"]);
 		$db->where("lost_password_request", "1");
 		$db->where("email", $_POST["email"]);
-		$results = $db->getOne('user');
+		if($_POST["role"] == "student"){
+			$results = $db->getOne('user');
+		}
+		else{
+			$results = $db->getOne('company');
+		}
 		
 		if(empty($results)){
 			//header("location:error.php");
@@ -107,7 +112,13 @@
 					"lost_password_request" => "0"
 				);
 				$db->where ('id', $results["id"]);
-				if($db->update('user', $data)){
+				if($_POST["student"]){
+					$update = $db->update('user', $data);
+				}
+				else{
+					$update = $db->update('company', $data);
+				}
+				if($update){
 					$success = '<div class="alert alert-success">
 								<strong>Success!</strong> Change password success. <a href="http://'. getFolderUrl() .'login.php">Click here to Login</a>
 							</div>';
@@ -154,6 +165,7 @@
 					if($mode == "Forgot"){
 						echo "<input type='hidden' name='key' value='". $_GET["key"] ."'>";
 						echo "<input type='hidden' name='email' value='". $_GET["email"] ."'>";
+						echo "<input type='hidden' name='role' value='". $_GET["role"] ."'>";
 					}
 				?>
 				<div class="form-group">

@@ -7,14 +7,19 @@
 	
 	$success="";
 
-	if(strlen($_SESSION["current"]) != 0){
+	if(strlen($_SESSION["current"]) != 0 || !isset($_GET["role"])){
 		header("location:error.php");
 	}
 	if(isset($_POST["reset"])){
 		$input = trim($_POST["input"]);
 		$db->where("email", $input);
 		$db->orWhere ("username", $input);
-		$results = $db->get('user');
+		if($_POST["role"] == "user"){
+			$results = $db->get('user');
+		}
+		else{
+			$results = $db->get('company');
+		}
 		if(count($results) == 1){
 			$results = reset($results);
 			$data = Array ("lost_password_request" => "1",
@@ -26,8 +31,15 @@
 			if($db->update("user", $data)){
 				//update array with new data
 				$db->where("id", $results["id"]);
-				$results = $db->getOne('user');
-				$send = emailForgotPassword($results);
+				if($_Post["role"] == "user"){
+					$results = $db->getOne('user');
+					$send = emailForgotPassword($results);
+				}
+				else{
+					$results = $db->getOne('company');
+					$send = emailForgotPasswordCompany($results);
+				}
+				
 				if($send == true){
 					$success = '<div class="alert alert-success">
 							<strong>Success!</strong> Request reset password Success! Check your email to continue.
@@ -61,6 +73,7 @@
 						<input type="text" class="form-control" name="input" id="input" placeholder="Enter Username / email" required>
 					</div>
 				</div>
+				<input type="hidden" name="role" value="<?php echo $_GET["role"];?>">
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary" name="reset">Request reset password</button>
