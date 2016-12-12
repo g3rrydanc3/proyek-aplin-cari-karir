@@ -110,7 +110,7 @@
 					foreach($query3 as $data){
 						echo '
 						<div class="col-sm-3">
-							<a href = "viewcompany.php">
+							<a href = "company.php?id='. $data["id"] .'">
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										'. $data["nama"] .' 
