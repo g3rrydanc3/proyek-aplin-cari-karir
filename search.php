@@ -89,7 +89,7 @@
 													echo "user/" . $data["foto"];
 												}
 											echo '" class="img-responsive" alt="'. $data["foto"] .'">
-											<p class="text-center">Kota</p>
+											<p class="text-center">'. $data["kota"] .'</p>
 										</div>
 									</div>
 								</div>
@@ -125,7 +125,7 @@
 														echo "company/" . $data["logo"];
 													}
 												echo '" class="img-responsive" alt="'. $data["logo"] .'">
-												<p class="text-center">Kota</p>
+												<p class="text-center">'. $data["kota"] .'</p>
 											</div>
 										</div>
 									</div>
