@@ -31,7 +31,7 @@
 					<!-- SIDEBAR MENU -->
 					<div class="profile-usermenu">
 						<ul class="nav">
-							<li class="<?php active('profile.php');?>">
+							<li class="active">
 								<a href="http://<?php echo getFolderUrl();?>company.php<?php echo passingGet();?>">
 								<i class="glyphicon glyphicon-home"></i>
 								Overview </a>

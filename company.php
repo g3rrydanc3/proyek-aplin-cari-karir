@@ -9,7 +9,12 @@
 			header("location:http://". getFolderUrl() ."company/profile.php");
 		}
 		else{
-			require_once("company_view.php");
+			if($_GET["id"] == $_SESSION["current"] && !is_numeric($_SESSION["role"])){	//company
+				header("location:http://". getFolderUrl() ."company/profile.php");
+			}
+			else{
+				require_once("company_view.php");
+			}
 		}
 		require_once('footer.php');
 	}

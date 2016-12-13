@@ -49,7 +49,7 @@
 					</label>
 				</div>
 				<button class="btn btn-lg btn-primary btn-block" type="submit" name="signin">Sign in</button>
-				<a href="http://<?php echo getFolderUrl();?>passwordreset.php"><button class="btn btn-lg btn-danger btn-block">Forgot password?</button></a>
+				<a href="http://<?php echo getFolderUrl();?>passwordreset.php?role=company"><button class="btn btn-lg btn-danger btn-block">Forgot password?</button></a>
 				<?php
 					foreach($errors as $error){
 						echo "<br>";

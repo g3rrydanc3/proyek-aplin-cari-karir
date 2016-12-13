@@ -4,7 +4,7 @@ Proyek Aplin STTS 2016
 ###Back-end :
 - [joshcam/PHP-MySQLi-Database-Class](https://github.com/joshcam/PHP-MySQLi-Database-Class)
 - [PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
-- [Message System](http://www.9lessons.info/2013/05/message-conversation-database-design.html)
+- [Message System](http://forum.sz-ex.com/thread/9406/php-simple-private-messaging-system)
 
 ###Front-end :
 - [jQuery](https://jquery.com/)
@@ -12,7 +12,8 @@ Proyek Aplin STTS 2016
 - [Landing Page (Start Bootstrap)](https://startbootstrap.com/template-overviews/landing-page/)
 - [lipis/bootstrap-sweetalert](https://lipis.github.io/bootstrap-sweetalert/)
 - [kartik-v/bootstrap-fileinput](http://plugins.krajee.com/file-input)
-- [dangrossman/bootstrap-daterangepicker](http://daterangepicker.com/)
+- [dangrossman/bootstrap-daterangepicker](http://daterangepicker.com)
+- [summernote/summernote](https://github.com/summernote/summernote/)
 
 ##Team :
 - g3rrydanc3

@@ -44,7 +44,6 @@
 											<th>Date Employment</th>
 											<th>Date Out of Work</th>
 											<th>Description</th>
-											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>

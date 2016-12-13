@@ -3,7 +3,7 @@
 	define('Access', TRUE);
 	require_once( __DIR__.'/../header.php');
 	
-	if(strlen($_SESSION["current"]) == 0 || !is_numeric($_SESSION["role"])){
+	if(strlen($_SESSION["current"]) == 0){
 		if(!isset($GET["id"])){
 			header("location:http://". getFolderUrl() ."error.php");
 		}
