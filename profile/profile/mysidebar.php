@@ -39,10 +39,15 @@
 								<i class="glyphicon glyphicon-briefcase"></i>
 								Work History </a>
 							</li>
-							<li class="<?php active('message.php'); active('message_view.php')?>">
-								<a href="http://<?php echo getFolderUrl();?>profile/message.php">
+							<li class="<?php active('message_inbox.php'); active('message_write.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>profile/message_inbox.php">
 								<i class="glyphicon glyphicon-envelope"></i>
 								Message </a>
+							</li>
+							<li class="<?php active('message_sent.php');?>">
+								<a href="http://<?php echo getFolderUrl();?>profile/message_sent.php">
+								<i class=" 	glyphicon glyphicon-send"></i>
+								Message Sent </a>
 							</li>
 							<li class="<?php active('setting.php');?>">
 								<a href="http://<?php echo getFolderUrl();?>profile/setting.php">

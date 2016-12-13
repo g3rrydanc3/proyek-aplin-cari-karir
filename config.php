@@ -24,7 +24,6 @@
 	//init mysql
 	$db = new MysqliDb (DB_SERVER, DB_USER, DB_PASSWORD, DB_DBNAME);
 	$db->ping();
-	
 	//init session
 	session_start();
 	
@@ -87,5 +86,14 @@
 	function validateDate($date, $format = 'd-m-Y'){
 		$d = DateTime::createFromFormat($format, $date);
 		return $d && $d->format($format) == $date;
+	}
+	
+	function getNotificationCount(){
+		$ctr = 0;
+		if(strlen($_SESSION["current"]) != 0 && is_numeric($_SESSION["role"])){
+			$count = $GLOBALS["db"]->rawQueryOne("select COUNT(*) from message where message.user_id_to = '" . $_SESSION["current"] . "' and message.read = '0'")["COUNT(*)"];
+			$ctr += $count;
+		}
+		return $count;
 	}
 ?>

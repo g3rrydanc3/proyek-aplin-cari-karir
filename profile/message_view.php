@@ -16,8 +16,15 @@
 	$db->where("id", $_GET["id"]);
 	$message = $db->getOne("message");
 	if(!empty($message)){
-		if($message["user_id_to"] != $_SESSION["current"] || $message["deleted"] == "1"){
-			header("location:http://" . getFolderUrl() . "error.php");
+		if($_GET["sent"] == "yes"){
+			if($message["user_id_from"] != $_SESSION["current"]){
+				header("location:http://" . getFolderUrl() . "error.php");
+			}
+		}
+		else{
+			if($message["user_id_to"] != $_SESSION["current"] || $message["deleted"] == "1"){
+				header("location:http://" . getFolderUrl() . "error.php");
+			}
 		}
 	}else{
 		header("location:http://" . getFolderUrl() . "error.php");
@@ -25,9 +32,9 @@
 	$db->where("id", $message["user_id_from"]);
 	$username = $db->getOne("user")["username"];
 	
-	if($message["read"] == "0"){
+	if($message["user_id_to"] == $_SESSION["current"] && $message["read"] == "0"){
 		$data = Array("read" => "1");
-		$db->where($message["id"]);
+		$db->where("id", $message["id"]);
 		$db->update("message", $data);
 	}
 	
@@ -49,16 +56,18 @@
 							<h2>Message</h2>
 						</div>
 						<div class="panel-body">
-							<p class="text-muted">From : <?php echo $username;?></p>
-							<div class="well"><?php echo strip_tags($message["message"]);?></div>
-							<div class="row">
-								<div class="col-sm-6">
-									<a href="#"><button class="btn btn-primary btn-block">Reply</button></a>
-								</div>
-								<div class="col-sm-6">
-									<a href="message.php?action=del&id=<?php echo $_GET["id"];?>"><button class="btn btn-danger btn-block">Delete</button></a>
-								</div>
-							</div>
+							<p class="text-muted">From : <?php echo "<a href='http://". getFolderUrl()."profile/profile.php?id=". $message["user_id_from"] ."'>" . $username . "</a>";?></p>
+							<div class="well"><?php echo $message["message"];?></div>
+							<?php if($_GET["sent"] != "yes"){
+								echo '<div class="row">
+									<div class="col-sm-6">
+										<a href="message_write.php?id=' . $message["user_id_from"] . '"><button class="btn btn-primary btn-block">Reply</button></a>
+									</div>
+									<div class="col-sm-6">
+										<a href="message.php?action=del&id=' . $_GET["id"] . '"><button class="btn btn-danger btn-block">Delete</button></a>
+									</div>
+								</div>';
+							}?>
 						</div>
 					</div>
 				</div>

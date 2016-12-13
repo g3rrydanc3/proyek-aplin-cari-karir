@@ -16,7 +16,12 @@
 			require_once("profile/myprofile.php");
 		}
 		else{
-			require_once("profile/profile.php");
+			if($_SESSION["current"] == $_GET["id"]){
+				require_once("profile/myprofile.php");
+			}
+			else{
+				require_once("profile/profile.php");
+			}
 		}
 	}
 	

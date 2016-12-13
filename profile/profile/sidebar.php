@@ -24,7 +24,7 @@
 					<!-- SIDEBAR BUTTONS -->
 					<?php if(strlen($_SESSION["current"]) != 0){
 						echo '<div class="profile-userbuttons">
-						<a href="#"><button type="button" class="btn btn-primary btn-sm">Message</button></a>
+						<a href="message_write.php?id='. $_GET["id"] .'"><button type="button" class="btn btn-primary btn-sm">Message</button></a>
 					</div>';
 					}?>
 					<!-- END SIDEBAR BUTTONS -->

@@ -80,8 +80,8 @@
 									<thead>
 										<tr>
 											<th>From</th>
-											<th>Subject</th>
 											<th>Date</th>
+											<th>Subject</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -99,10 +99,10 @@
 														echo "<tr style='font-weight:bold;' class='danger'>";
 													}
 													
-													echo "<td><a href='message_view.php?id=" . $data['id'] . "'>". $username ."</a></td>";
-													echo "<td><a href='message_view.php?id=" . $data['id'] . "'>". $data['subject'] ."</a></td>";
-													echo "<td><a href='message_view.php?id=" . $data['id'] . "'>". $data['sent_stamp'] ."</a></td>";
-													echo "<td>Delete</td>";
+													echo "<td><a href='message_view.php?sent=no&id=" . $data['id'] . "'>". $username ."</a></td>";
+													echo "<td><a href='message_view.php?sent=no&id=" . $data['id'] . "'>". $data['sent_stamp'] ."</a></td>";
+													echo "<td><a href='message_view.php?sent=no&id=" . $data['id'] . "'>". $data['subject'] ."</a></td>";
+													echo "<td><a href='message.php?action=del&&id=" . $data['id'] . "'>Delete</a></td>";
 													echo "</tr>";
 													$ctr++;
 												}

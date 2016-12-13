@@ -60,7 +60,7 @@
 						if(strlen($_SESSION["current"]) != 0){
 							echo '<li class=';
 							active("notification.php");
-							echo '><a href="http://' . getFolderUrl() . 'notification.php"><span class="badge">0</span> Notification</a></li>';
+							echo '><a href="http://' . getFolderUrl() . 'notification.php"><span class="badge">'. getNotificationCount() .'</span> Notification</a></li>';
 						}
 					?>
 				</li>

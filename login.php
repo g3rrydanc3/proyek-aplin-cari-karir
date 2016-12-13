@@ -26,7 +26,12 @@
 				$data = Array ('last_sign_in_stamp' => date("Y-m-d H:i:s"));
 				$db->where ('id', $_SESSION["current"]);
 				$db->update ('user', $data);
-				header("location:index.php");
+				if(isset($_POST["redir"])){
+					header("location:" . getFolderUrl() . $_GET['id'] . ".php");
+				}
+				else{
+					header("location:index.php");
+				}
 			}
 		}
 		else{
@@ -48,6 +53,7 @@
 						<input type="checkbox" value="remember-me"> Remember me
 					</label>
 				</div>
+				<?php if(isset($_GET["redir"])echo "<input type='hidden' name='redir' value='". $_GET["redir"] ."'";
 				<button class="btn btn-lg btn-primary btn-block" type="submit" name="signin">Sign in</button>
 				<a href="http://<?php echo getFolderUrl();?>passwordreset.php?role=student"><button class="btn btn-lg btn-danger btn-block">Forgot password?</button></a>
 				<?php
