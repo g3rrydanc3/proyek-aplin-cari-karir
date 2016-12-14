@@ -51,7 +51,7 @@ Proyek Aplin STTS 2016
 - [X] Message antar user
 - [ ] Skill
 - Admin
-- [ ] Tambah pekerjaan
+- [X] Tambah pekerjaan
 - [X] Manage pendaftar
 - [ ] Manage pekerjaan palsu
 - [X] Ganti data mahasiswa,perusahaan
