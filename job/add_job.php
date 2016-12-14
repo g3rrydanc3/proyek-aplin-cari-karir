@@ -11,8 +11,9 @@
 		$syarat = trim($_POST["syarat"]);
 		$deskripsi = trim($_POST["deskripsi"]);
 		$tgl_batas = trim($_POST["tgl_batas"]);
+		$kota = trim($_POST["kota"]);
 		
-		if(empty($judul) || empty($posisi) || empty($syarat) || empty($tgl_batas)){
+		if(empty($judul) || empty($posisi) || empty($syarat) || empty($tgl_batas) || empty($kota)){
 			array_push($errors, "All input must be filled");
 		}
 		if(!validateDate($tgl_batas, "d-m-Y H:i:s")){
@@ -27,6 +28,7 @@
 				"judul" => $judul,
 				"posisi" => $posisi,
 				"syarat" => $syarat,
+				"kota" => $kota,
 				"deskripsi" => $deskripsi,
 				"tgl_upload" => date("Y-m-d H:i:s"),
 				"tgl_batas" => date_format(date_create_from_format('d-m-Y H:i:s', $tgl_batas), "Y-m-d H:i:s")
@@ -64,6 +66,12 @@
 					<label class="control-label col-sm-2" for="syarat">Requirement</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="syarat" name="syarat" placeholder="Enter requirement" value="<?php if(isset($_POST['syarat'])){echo htmlentities($_POST['syarat']);}?>" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="kota">City</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="kota" name="kota" placeholder="Enter city" value="<?php if(isset($_POST['kota'])){echo htmlentities($_POST['kota']);}?>" required>
 					</div>
 				</div>
 				<div class="form-group">

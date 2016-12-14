@@ -23,6 +23,7 @@
 			$lastName = trim($_POST["lastName"]);
 			$dob = trim($_POST["dob"]);
 			$gender = trim($_POST["gender"]);
+			$kota = trim($_POST["kota"]);
 			if(strlen($username) < 3){
 				array_push($errors, "Username minimum 3 character");
 			}
@@ -54,6 +55,9 @@
 			if(date_format(date_create_from_format('d-m-Y', $dob), "Y-m-d") > date("Y-m-d")){
 				array_push($errors, "Date of birth must be greater than now");
 			}
+			if(empty($kota)){
+				array_push($errors, "City invalid");
+			}
 			
 			if(count($errors) == 0){
 				$db->where ('username', $username);
@@ -71,6 +75,7 @@
 							   "name" => $firstName . " " . $lastName,
 							   "gender" => $gender,
 							   "birthdate" => $date[2] . "-" . $date[1] . "-" . $date[0],
+							   "kota" => $kota,
 							   "activation_token" => sha1(mt_rand(10000,99999).time().$email),
 							   "sign_up_stamp" => date("Y-m-d H:i:s")
 					);
@@ -168,6 +173,12 @@
 				<label class="control-label col-sm-2" for="dob">Date of Birth</label>
 				<div class="col-sm-10">
 					<input id="dob" name="dob" class="form-control" placeholder="DD-MM-YYYY" type="date" value="<?php if(isset($_POST['dob'])){echo htmlentities($_POST['dob']);}?>" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="kota">City</label>
+				<div class="col-sm-10">
+					<input id="kota" name="kota" class="form-control" placeholder="Enter city" type="text" value="<?php if(isset($_POST['kota'])){echo htmlentities($_POST['kota']);}?>" required>
 				</div>
 			</div>
 			<div class="form-group">

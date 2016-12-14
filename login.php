@@ -53,7 +53,7 @@
 						<input type="checkbox" value="remember-me"> Remember me
 					</label>
 				</div>
-				<?php if(isset($_GET["redir"])echo "<input type='hidden' name='redir' value='". $_GET["redir"] ."'";
+				<?php if(isset($_GET["redir"]))echo "<input type='hidden' name='redir' value='". $_GET["redir"] ."'";?>
 				<button class="btn btn-lg btn-primary btn-block" type="submit" name="signin">Sign in</button>
 				<a href="http://<?php echo getFolderUrl();?>passwordreset.php?role=student"><button class="btn btn-lg btn-danger btn-block">Forgot password?</button></a>
 				<?php

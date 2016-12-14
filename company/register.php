@@ -24,6 +24,7 @@
 			$tel = trim($_POST["tel"]);
 			$alamat = trim($_POST["alamat"]);
 			$deskripsi = trim($_POST["deskripsi"]);
+			$kota = trim($_POST["kota"]);
 			if(strlen($username) < 4){
 				array_push($errors, "Username minimum 4 character");
 			}
@@ -50,6 +51,9 @@
 			}
 			if (empty($_FILES['logo'])) {
 				array_push($errors, "Logo cannot be empty");
+			}
+			if(empty($kota)){
+				array_push($errors, "City invalid");
 			}
 			
 			$ext = explode('.', basename($_FILES["logo"]['name']));
@@ -94,6 +98,7 @@
 						"nama_cp" => $nama_cp,
 						"tel" => $tel,
 						"alamat" => $alamat,
+						"kota" => $kota,
 						"deskripsi" => $deskripsi,
 						"logo" => $filename,
 						"activation_token" => sha1(mt_rand(10000,99999).time().$email),
@@ -195,6 +200,12 @@
 					<label class="control-label col-sm-2" for="alamat">Address <span class="glyphicon glyphicon-asterisk"></span></label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="alamat" id="alamat" placeholder="Enter address" value="<?php if(isset($_POST['alamat'])){echo htmlentities($_POST['alamat']);}?>" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="kota">City <span class="glyphicon glyphicon-asterisk"></span></label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="kota" id="kota" placeholder="Enter city" value="<?php if(isset($_POST['kota'])){echo htmlentities($_POST['kota']);}?>" required>
 					</div>
 				</div>
 				<div class="form-group">

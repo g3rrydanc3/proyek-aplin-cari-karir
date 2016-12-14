@@ -94,6 +94,6 @@
 			$count = $GLOBALS["db"]->rawQueryOne("select COUNT(*) from message where message.user_id_to = '" . $_SESSION["current"] . "' and message.read = '0'")["COUNT(*)"];
 			$ctr += $count;
 		}
-		return $count;
+		return $ctr;
 	}
 ?>
