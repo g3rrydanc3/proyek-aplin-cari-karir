@@ -19,7 +19,7 @@
 
 /* content editable */
 
-*[contenteditable] { border-radius: 0.25em; min-width: 1em; outline: 0; }
+*[contenteditable] { border-radius: 0.25em; min-width: 1em; outline: 0; width: 100%; }
 
 *[contenteditable] { cursor: pointer; }
 
