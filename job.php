@@ -45,17 +45,17 @@
 			</form>
 		</div>
 		<div id = "container">
-			<h2>Job</h2><hr>
 			<?php
 				if(empty($query1)){
 					
 				}
 				else{
-					echo '<div class="row">';
+					echo '<h2>Job</h2><hr>';
 					foreach($query1 as $data){
-						echo $data['nama'];
+						echo '<div class="panel panel-default">
+							<div class="panel-body">'.$data["nama"].' - '.$data["lokasi"].'</div>
+						</div>';
 					}
-					echo '</div>';
 				}
 			?>	
 		</div>
