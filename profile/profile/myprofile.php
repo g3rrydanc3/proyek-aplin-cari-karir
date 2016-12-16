@@ -38,6 +38,7 @@
 							 <?php if($setting["birthdate"] == 1)echo '<p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ' . $queryBirthDate . '</p>';?>
 							 <?php if($setting["address"] == 1)echo '<p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ' . $user["address"] . ' ' . $user["zipcode"] . '</p>';?>
 							 <?php if($setting["about_me"] == 1){ echo '<h3>About me</h3>' . $user["about_me"];}?>
+							 <a href="cv.php"><button class="btn btn-primary btn-block">Print Curiculum Vitae</button></a>
 							 
 						</div>
 					</div>
